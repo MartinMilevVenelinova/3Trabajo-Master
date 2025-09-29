@@ -37,3 +37,26 @@ if __name__ == "__main__":
 
 # %% KATA 02 - Duplicar valores con map()
 # 2. Dada una lista de números, obtén una nueva lista con el doble de cada valor. Usa la función map()
+
+from typing import List, Iterable, Union
+Number = Union[int, float]  # Definición de tipo para números (enteros y flotantes)
+
+def duplicar_lista(numeros: Iterable[Number]) -> List[Number]:
+    """
+    Devuelve una lista nueva con cada numero multiplicado por 2.
+    Uso de map() como se pide.
+    """
+    # map va a aplicar la funcion de lambda x: x*2 a cada elemento y devuelve un iterable
+    # por eso lo convierto a list() para obetener una lista final
+
+    return list(map(lambda x: x * 2, numeros))
+
+if __name__ == "__main__": 
+    # pruebas  
+    assert duplicar_lista([1, 2, 3]) == [2, 4, 6]
+    assert duplicar_lista([1.5, 2.0]) == [3.0, 4.0]
+    assert duplicar_lista([]) == []
+    # Demostracion visible
+    print(duplicar_lista([19, -5, 0.7])) # [38, -10, 1.4]
+    print("KATA 02 - Duplicar valores con map() - OK")
+# %%
