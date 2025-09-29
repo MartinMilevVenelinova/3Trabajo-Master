@@ -59,4 +59,24 @@ if __name__ == "__main__":
     # Demostracion visible
     print(duplicar_lista([19, -5, 0.7])) # [38, -10, 1.4]
     print("KATA 02 - Duplicar valores con map() - OK")
+# %% KATA 03 - Palabras que contienen la palabra objetio
+# 3. Escribe una función que tome una lista de palabras y una palabra objetivo como parámetros. La función debe
+# devolver una lista con todas las palabras de la lista original que contengan la palabra objetivo.
+
+from typing import List
+
+def palabras_que_contienen(palabras: List[str], objetivo: str) -> List[str]:
+    """
+    Devuelve una lista con las palabras de 'palabras' que contienen la subcadena 'objetivo'.
+    """
+    return [p for p in palabras if objetivo in p]
+
+if __name__ == "__main__":
+    # pruebas  
+    assert palabras_que_contienen(["python", "py", "java"], "py") == ["python", "py"]
+    assert palabras_que_contienen(["hola", "adios", "ola"], "ola") == ["hola", "ola"]
+    assert palabras_que_contienen([], "x") == []
+    # Demostracion visible
+    print(palabras_que_contienen(["hola", "adios", "ola"], "la")) # ['ola', 'hola']
+    print("KATA 03 - Palabras que contienen la palabra objetio - OK")
 # %%
