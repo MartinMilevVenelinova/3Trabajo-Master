@@ -1,0 +1,32 @@
+# %% KATA 01 - Frecuencias de letras
+# 1. Escribe una función que reciba una cadena de texto como parámetro y devuelva un diccionario con las frecuencias
+# de cada letra en la cadena. Los espacios no deben ser considerados.
+
+from typing import Dict                                 # pistas de tipos para mayor clarisad y evitar errores
+
+def frecuencia_letras(cadena: str, *, ignorar_mayusculas: bool = False) -> Dict[str, int]:
+    
+    if ignorar_mayusculas:
+        cadena = cadena.lower()
+    
+    contador: Dict[str, int] = {}
+    for letra in cadena:                                # recorro la cadena caracter a caracter     
+        if letra != " ":                                # ignoro los espacios
+            # si la clave existe, sumo 1; si no existe, empiezo en 0 y luego sumo 1
+            contador[letra] = contador.get(letra, 0) + 1
+    return contador
+
+if __name__ == "__main__":  
+    # pruebas  
+    assert frecuencia_letras("Buenas Mundo") == {'B': 1, 'u': 2, 'e': 1, 'n': 2, 'a': 1, 's': 1, 'M': 1, 'o': 1, 'd': 1}
+    assert frecuencia_letras("") == {}
+    assert frecuencia_letras("   ") == {}
+    # prueba de mayúsculas/minúsculas unificadas
+    assert frecuencia_letras("Aa", ignorar_mayusculas=True) == {'a': 2}
+
+    # Demostracion visible
+    print(frecuencia_letras("Buenas Mundo")) # {'B': 1, 'u': 2, 'e': 1, 'n': 2, 'a': 1, 's': 1, 'M': 1, 'o': 1, 'd': 1}
+    print("KATA 01 - Frecuencias de letras - OK")
+
+
+# %%
