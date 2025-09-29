@@ -6,6 +6,12 @@ from typing import Dict                                 # pistas de tipos para m
 
 def frecuencia_letras(cadena: str, *, ignorar_mayusculas: bool = False) -> Dict[str, int]:
     
+    """
+    Devuelve un diccionario con cuantas veces aparece cada caracter NO espacio.
+    E ignorar_mayusculas = True, convierte todo a minsuculas antes de contar.
+    """
+
+
     if ignorar_mayusculas:
         cadena = cadena.lower()
     
@@ -29,4 +35,5 @@ if __name__ == "__main__":
     print("KATA 01 - Frecuencias de letras - OK")
 
 
-# %%
+# %% KATA 02 - Duplicar valores con map()
+# 2. Dada una lista de números, obtén una nueva lista con el doble de cada valor. Usa la función map()
