@@ -115,3 +115,10 @@ Primero elimino los espacios y guardo solo las letras unicas recorriendo el text
 Luego uso map() con lambda c: (c.upper(), c.lower()) para crear las tuplas.
 Las pruebas cubren letras repetidas, orden y tipo de dato incorrecto (lanza TypeError).
 
+____________________________________________________________________________________________KATA 14__________________________________________________________________________________________
+
+La funcion recibe una lista de palabras y una letra, y devuelve solo las que empiezan con esa letra.
+Uso filter() con lambda p: p.lower().startswith(letra.lower()) para comparar sin distinguir mayusculas.
+Controlo que todos los elementos sean strings y que la letra sea un unico caracter.
+Las pruebas incluyen listas vacias, coincidencias y errores por letra no valida.
+
