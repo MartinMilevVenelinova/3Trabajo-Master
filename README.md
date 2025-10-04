@@ -50,8 +50,22 @@ ________________________________________________________________________________
 Funcion que convierte una lista de tuplas en strings, usando map() dos veces:
 - map(str, t) para convertir los elementos de la tupla a string
 - " ".join(...) para unirlos con espacios
-- Todo dentro de un map() general que recorre cada tupla.
+Todo dentro de un map() general que recorre cada tupla.
 Controlo que todos los elementos sean tuplas usando all(...), si no lanzo TypeError.
 Pruebas:
 Tuplas de strings y de numeros
 Caso donde un elemento no es tupla (debe lanzar error)
+
+____________________________________________________________________________________________KATA 08__________________________________________________________________________________________
+
+Este programa pide al usuario dos numeros reales usando input().
+
+Convierte los valores a float y los divide.
+Si el usuario ingresa algo que no sea un numero, se lanza ValueError.
+Si el segundo numero es cero, se lanza ZeroDivisionError.
+Si no hay errores, muestra el resultado en el bloque else.
+El bloque finally siempre se ejecuta para mostrar que el programa termino.
+Este es un ejemplo clasico del uso completo de try / except / else / finally para manejar errores de entrada y control de flujo.
+
+
+
