@@ -136,3 +136,10 @@ Primero separo el texto en palabras con split().
 Luego uso filter() con lambda p: len(p) > n para quedarme solo con las mas largas.
 Controlo que el texto sea un str y n un entero.
 Las pruebas cubren frases normales, texto vacio y un caso de error con tipo de dato incorrecto.
+
+____________________________________________________________________________________________KATA 17__________________________________________________________________________________________
+
+La funcion recibe una lista de digitos y los combina para formar el numero completo.
+Uso reduce() con lambda x, y: x * 10 + y para acumular los digitos uno a uno.
+Primero verifico que todos los elementos sean enteros entre 0 y 9, y que la lista no este vacia.
+Las pruebas cubren numeros normales, un solo digito y un caso de error con valor no valido.
