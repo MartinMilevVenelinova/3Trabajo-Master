@@ -538,4 +538,44 @@ if __name__ == "__main__":
     print(palabras_largas("Aprender Python es divertido", 5))  # ['Aprender', 'Python', 'divertido']
     print("KATA 16 - Palabras mas largas que n - OK")
     
+
+# %% KATA 17 - Convertir lista de digitos a numero con reduce
+# 17. Crea una función que tome una lista de dígitos y devuelva el número correspondiente. Por ejemplo, [5,7,2]
+# corresponde al número quinientos setenta y dos (572). Usa la función reduce()
+
+from functools import reduce
+from typing import List
+
+def lista_a_numero(digitos: List[int]) -> int:
+    """
+    Convierte una lista de digitos en el numero correspondiente.
+    """
+    if not all(isinstance(d, int) and 0 <= d <= 9 for d in digitos):
+        raise ValueError("Todos los elementos deben ser digitos enteros entre 0 y 9")
+
+    if not digitos:
+        raise ValueError("La lista no puede estar vacia")
+
+    return reduce(lambda x, y: x * 10 + y, digitos)
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert lista_a_numero([5, 7, 2]) == 572
+    assert lista_a_numero([0, 1, 2, 3]) == 123
+    assert lista_a_numero([9]) == 9
+
+    #prueba de error: valor fuera de rango
+    print("Probando lista_a_numero con valor no valido...")
+    try:
+        lista_a_numero([1, 15, 3])
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #demostracion visible
+    print(lista_a_numero([2, 0, 2, 5]))  # 2025
+    print("KATA 17 - Convertir lista de digitos a numero - OK")
+
+
 # %%
