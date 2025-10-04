@@ -218,5 +218,31 @@ if __name__ == "__main__":
     print(tuplas_a_strings([("vamos", "bien"), ("KATA", 7)]))  #['vamos bien', 'KATA 7']
     print("KATA 07 - Convertir tuplas en strings con map - OK")
 
+
+# %% KATA 08 - Division con manejo de errores
+# 8. Escribe un programa que pida al usuario dos números e intente dividirlos. Si el usuario ingresa un valor no numérico
+# o intenta dividir por cero, maneja esas excepciones de manera adecuada. Asegúrate de mostrar un mensaje
+# indicando si la división fue exitosa o no.
+
+def dividir_usuario():
+    """
+    Pide al usuario dos numeros y los divide, manejando errores de entrada o division por cero.
+    """
+    try:
+        a = float(input("Ingresa el primer numero: "))
+        b = float(input("Ingresa el segundo numero: "))
+        resultado = a / b
+    except ValueError:
+        print("Error: uno de los valores no es numerico.")
+    except ZeroDivisionError:
+        print("Error: no se puede dividir por cero.")
+    else:
+        print("Division exitosa. Resultado:", resultado)
+    finally:
+        print("Fin del programa.")
+
+if __name__ == "__main__":
+    dividir_usuario()
+
     
 # %%
