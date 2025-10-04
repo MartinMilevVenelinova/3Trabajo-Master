@@ -17,3 +17,12 @@ Quiero una funcion que reciba una lista de palabras y un objetivo y me devuelva 
 [p for p in palabras if objetivo in p] → recorro cada palabra p y me quedo con ella si objetivo in p es verdad (el operador in mira si el trozo aparece dentro).
 La busqueda es sensible a mayusculas/minusculas; si quisera ignorarlas haria objetivo.lower() in p.lower().
 Las pruebas cubren casos tipicos (coincidencias, subcadenas y lista vacia). El resultado mantiene el orden de entrada (no ordeno nada).
+
+
+____________________________________________________________________________________________KATA 05__________________________________________________________________________________________
+
+Quiero una funcion que reciba una lista de números (notas) y un valor opcional nota_aprobado (por defecto 5). Calculo la media con sum(notas) / len(notas). 
+Luego comparo esa media con nota_aprobado: si es mayor o igual, el estado es "aprobado", si no, "suspenso". Devuelvo una tupla con la media y el estado.
+Las pruebas incluyen distintos casos:
+medias por encima, igual o debajo del aprobado, nota_aprobado personalizado y una nota sola.
+También controlo que la lista no esté vacía: si lo está, lanzo un ValueError, ya que no tendría sentido calcular una media de nada.
