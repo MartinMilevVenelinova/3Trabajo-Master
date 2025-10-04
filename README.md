@@ -18,7 +18,14 @@ Quiero una funcion que reciba una lista de palabras y un objetivo y me devuelva 
 La busqueda es sensible a mayusculas/minusculas; si quisera ignorarlas haria objetivo.lower() in p.lower().
 Las pruebas cubren casos tipicos (coincidencias, subcadenas y lista vacia). El resultado mantiene el orden de entrada (no ordeno nada).
 
+____________________________________________________________________________________________KATA 04__________________________________________________________________________________________
 
+Funcion que recibe dos listas y calcula la diferencia de sus valores usando map().
+Uso lambda x, y: x - y para restar pares de elementos.
+Controlo que las listas tengan el mismo tamaño o lanzo un ValueError.
+Las pruebas incluyen:
+Casos normales con listas iguales en longitud.
+Caso de error con longitudes distintas (debe lanzar excepcion).
 ____________________________________________________________________________________________KATA 05__________________________________________________________________________________________
 
 Quiero una funcion que reciba una lista de números (notas) y un valor opcional nota_aprobado (por defecto 5). Calculo la media con sum(notas) / len(notas). 
