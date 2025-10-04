@@ -183,5 +183,40 @@ if __name__ == "__main__":
     print(factorial(6))    # 720
     print("KATA 06 - Factorial recursivo - OK")
 
+
+# %% KATA 07 - Convertir tuplas en strings con map
+# 7. Genera una función que convierta una lista de tuplas a una lista de strings. Usa la función map()
+
+from typing import List, Tuple
+
+def tuplas_a_strings(tuplas: List[Tuple]) -> List[str]:
+    """
+    Convierte una lista de tuplas en una lista de strings.
+    Cada tupla se convierte en un string uniendo sus elementos con espacios.
+    """
+    if not all(isinstance(t, tuple) for t in tuplas):
+        raise TypeError("Todos los elementos deben ser tuplas")
+    
+    return list(map(lambda t: " ".join(map(str, t)), tuplas))
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert tuplas_a_strings([("hola", "mundo"), ("python", "rocks")]) == ["hola mundo", "python rocks"]
+    assert tuplas_a_strings([(1, 2), (3, 4)]) == ["1 2", "3 4"]
+    assert tuplas_a_strings([]) == []
+
+    #prueba de error: un elemento no es tupla
+    print("Probando tuplas_a_strings con elemento no-tupla...")
+    try:
+        tuplas_a_strings([("bien", "ahi"), "no es tupla"])
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # demostracion visible
+    print(tuplas_a_strings([("vamos", "bien"), ("KATA", 7)]))  #['vamos bien', 'KATA 7']
+    print("KATA 07 - Convertir tuplas en strings con map - OK")
+
     
 # %%
