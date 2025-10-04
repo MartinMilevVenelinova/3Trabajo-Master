@@ -108,3 +108,10 @@ Casos normales con frases con varias palabras.
 Frase vacia (devuelve lista vacia).
 Caso de error cuando el parametro no es string.
 
+____________________________________________________________________________________________KATA 13__________________________________________________________________________________________
+
+La funcion recibe una cadena y devuelve una lista de tuplas con cada letra en mayuscula y minuscula, sin repetir y manteniendo el orden original.
+Primero elimino los espacios y guardo solo las letras unicas recorriendo el texto.
+Luego uso map() con lambda c: (c.upper(), c.lower()) para crear las tuplas.
+Las pruebas cubren letras repetidas, orden y tipo de dato incorrecto (lanza TypeError).
+
