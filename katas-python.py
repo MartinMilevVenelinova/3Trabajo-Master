@@ -83,6 +83,39 @@ if __name__ == "__main__":
     print("KATA 03 - Palabras que contienen la palabra objetio - OK")
 
 
+# %% KATA 04 - Diferencia entre dos listas con map
+# 4. Genera una función que calcule la diferencia entre los valores de dos listas. Usa la función map()
+
+from typing import List
+
+def diferencias_listas(lista1: List[int], lista2: List[int]) -> List[int]:
+    """
+    Calcula la diferencia elemento a elemento entre dos listas del mismo tamaño.
+    """
+    if len(lista1) != len(lista2):
+        raise ValueError("Las listas deben tener el mismo tamaño")
+    
+    return list(map(lambda x, y: x - y, lista1, lista2))
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert diferencias_listas([1, 2, 3], [1, 1, 1]) == [0, 1, 2]
+    assert diferencias_listas([10, 20], [5, 5]) == [5, 15]
+    assert diferencias_listas([0, 0], [0, 0]) == [0, 0]
+
+    #prueba de error: listas con distinto tamaño
+    try:
+        diferencias_listas([1, 2], [1])
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # demostracion visible
+    print(diferencias_listas([5, 7, 9], [2, 4, 1]))  # [3, 3, 8]
+    print("KATA 04 - Diferencia entre dos listas con map - OK")
+
+
 # %% KATA 05 - Media y estado segun nota de aprobado
 # 5. Escribe una función que tome una lista de números como parámetro y un valor opcional nota_aprobado, que por 
 # defecto es 5. La función debe calcular la media de los números en la lista y determinar si la media es mayor o igual
