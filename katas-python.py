@@ -465,5 +465,40 @@ if __name__ == "__main__":
     print(palabras_con_letra(["casa", "coche", "perro", "conejo"], "c"))  # ['casa', 'coche', 'conejo']
     print("KATA 14 - Palabras que comienzan con una letra - OK")
 
+
+# %% KATA 15 - Sumar 3 a cada numero con lambda
+# 15. Crea una función lambda que sume 3 a cada número de una lista dada.
+
+from typing import List
+
+def sumar_tres(lista: List[int]) -> List[int]:
+    """
+    Devuelve una nueva lista con cada numero aumentado en 3.
+    """
+    if not all(isinstance(n, (int, float)) for n in lista):
+        raise TypeError("Todos los elementos deben ser numeros")
+
+    sumar = lambda n: n + 3
+    return list(map(sumar, lista))
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert sumar_tres([1, 2, 3]) == [4, 5, 6]
+    assert sumar_tres([0, -3, 7]) == [3, 0, 10]
+    assert sumar_tres([]) == []
+
+    # Prueba de error: elemento no numerico
+    print("Probando sumar_tres con valor no numerico...")
+    try:
+        sumar_tres([1, "a", 3])
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(sumar_tres([10, 20, 30]))  # [13, 23, 33]
+    print("KATA 15 - Sumar 3 a cada numero con lambda - OK")
+
     
 # %%
