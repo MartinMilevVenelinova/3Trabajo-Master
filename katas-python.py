@@ -214,7 +214,7 @@ if __name__ == "__main__":
     else:
         print("No se capturo el error como se esperaba")
 
-    # demostracion visible
+    #demostracion visible
     print(tuplas_a_strings([("vamos", "bien"), ("KATA", 7)]))  #['vamos bien', 'KATA 7']
     print("KATA 07 - Convertir tuplas en strings con map - OK")
 
@@ -264,12 +264,12 @@ def filtrar_mascotas(mascotas: List[str]) -> List[str]:
     return list(filter(lambda m: m not in PROHIBIDAS, mascotas))
 
 if __name__ == "__main__":
-    # Pruebas validas
+    #pruebas validas
     assert filtrar_mascotas(["Perro", "Gato", "Mapache"]) == ["Perro", "Gato"]
     assert filtrar_mascotas(["Oso", "Conejo", "Tigre"]) == ["Conejo"]
     assert filtrar_mascotas([]) == []
 
-    # Prueba de error: lista con un elemento no string
+    #prueba de error: lista con un elemento no string
     print("Probando filtrar_mascotas con valor no string...")
     try:
         filtrar_mascotas(["Perro", 123, "Gato"])
@@ -278,7 +278,7 @@ if __name__ == "__main__":
     else:
         print("No se capturo el error como se esperaba")
 
-    # Demostracion visible
+    #demostracion visible
     print(filtrar_mascotas(["Gato", "Serpiente Piton", "Tortuga"]))  # ['Gato', 'Tortuga']
     print("KATA 09 - Filtrar mascotas prohibidas - OK")
 
@@ -303,12 +303,12 @@ def calcular_promedio(numeros: List[float]) -> float:
     return sum(numeros) / len(numeros)
 
 if __name__ == "__main__":
-    # Pruebas validas
+    #pruebas validas
     assert calcular_promedio([5, 10, 15]) == 10.0
     assert calcular_promedio([2]) == 2.0
     assert calcular_promedio([0, 0, 0]) == 0.0
 
-    # Prueba de error: lista vacia
+    #prueba de error: lista vacia
     print("Probando calcular_promedio con lista vacia...")
     try:
         calcular_promedio([])
@@ -317,7 +317,7 @@ if __name__ == "__main__":
     else:
         print("No se capturo el error como se esperaba")
 
-    # Demostracion visible
+    #demostracion visible
     print(calcular_promedio([3, 6, 9]))  # 6.0
     print("KATA 10 - Promedio con excepcion personalizada - OK")
 
@@ -351,4 +351,41 @@ def pedir_edad():
 
 if __name__ == "__main__":
     pedir_edad()
+
+
+# %% KATA 12 - Longitud de palabras con map
+# 12. Genera una función que al recibir una frase devuelva una lista con la longitud de cada palabra. Usa la función map()
+
+from typing import List
+
+def longitudes_palabras(frase: str) -> List[int]:
+    """
+    Devuelve una lista con la longitud de cada palabra en la frase.
+    """
+    if not isinstance(frase, str):
+        raise TypeError("El parametro debe ser una cadena de texto")
+
+    palabras = frase.split()
+    return list(map(len, palabras))
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert longitudes_palabras("Hola mundo Python") == [4, 5, 6]
+    assert longitudes_palabras("Kata doce lista longitudes") == [4, 4, 5, 10]
+    assert longitudes_palabras("") == []
+
+    #prueba de error: parametro no string
+    print("Probando longitudes_palabras con valor no string...")
+    try:
+        longitudes_palabras(12345)
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #demostracion visible
+    print(longitudes_palabras("Hola Mundo"))  
+    print("KATA 12 - Longitud de palabras con map - OK")
+
+    
 # %%
