@@ -122,3 +122,11 @@ Uso filter() con lambda p: p.lower().startswith(letra.lower()) para comparar sin
 Controlo que todos los elementos sean strings y que la letra sea un unico caracter.
 Las pruebas incluyen listas vacias, coincidencias y errores por letra no valida.
 
+____________________________________________________________________________________________KATA 15__________________________________________________________________________________________
+
+La funcion recibe una lista de numeros y usa una lambda para sumar 3 a cada elemento.
+La expresion lambda n: n + 3 se aplica con map() para crear una nueva lista.
+Verifico que todos los elementos sean numericos antes de operar.
+Las pruebas cubren listas normales, vacias y un caso de error con un valor no numerico.
+
+____________________________________________________________________________________________KATA 16__________________________________________________________________________________________
