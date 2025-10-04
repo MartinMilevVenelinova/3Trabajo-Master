@@ -77,5 +77,12 @@ Casos con mascotas permitidas y prohibidas mezcladas
 Lista vacia
 Caso con un elemento no string para forzar un error
 
+____________________________________________________________________________________________KATA 10__________________________________________________________________________________________
 
-
+La funcion calcular_promedio toma una lista de numeros y devuelve su promedio.
+Si la lista esta vacia, lanza una excepcion personalizada ListaVaciaError.
+Esto permite identificar el error claramente y manejarlo con un try/except
+Pruebas:
+Casos con listas normales de numeros
+Caso con una lista vacia para forzar el error
+La definicion de una excepcion personalizada (class ListaVaciaError) permite extender el control de errores mas alla de las excepciones estandar.
