@@ -44,3 +44,14 @@ Control: si n es negativo, lanzo ValueError porque factorial no se define para n
 Pruebas:
 Casos normales con factoriales conocidos.
 Caso de error con negativo (debe lanzar excepcion).
+
+____________________________________________________________________________________________KATA 07__________________________________________________________________________________________
+
+Funcion que convierte una lista de tuplas en strings, usando map() dos veces:
+- map(str, t) para convertir los elementos de la tupla a string
+- " ".join(...) para unirlos con espacios
+- Todo dentro de un map() general que recorre cada tupla.
+Controlo que todos los elementos sean tuplas usando all(...), si no lanzo TypeError.
+Pruebas:
+Tuplas de strings y de numeros
+Caso donde un elemento no es tupla (debe lanzar error)
