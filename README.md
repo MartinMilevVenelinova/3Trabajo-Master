@@ -26,6 +26,7 @@ Controlo que las listas tengan el mismo tamaño o lanzo un ValueError.
 Las pruebas incluyen:
 Casos normales con listas iguales en longitud.
 Caso de error con longitudes distintas (debe lanzar excepcion).
+
 ____________________________________________________________________________________________KATA 05__________________________________________________________________________________________
 
 Quiero una funcion que reciba una lista de números (notas) y un valor opcional nota_aprobado (por defecto 5). Calculo la media con sum(notas) / len(notas). 
@@ -33,3 +34,13 @@ Luego comparo esa media con nota_aprobado: si es mayor o igual, el estado es "ap
 Las pruebas incluyen distintos casos:
 medias por encima, igual o debajo del aprobado, nota_aprobado personalizado y una nota sola.
 También controlo que la lista no esté vacía: si lo está, lanzo un ValueError, ya que no tendría sentido calcular una media de nada.
+
+____________________________________________________________________________________________KATA 06__________________________________________________________________________________________
+
+Funcion recursiva para calcular factorial:
+Caso base: n == 0 o n == 1 → devuelve 1
+Caso recursivo: n * factorial(n-1).
+Control: si n es negativo, lanzo ValueError porque factorial no se define para negativos
+Pruebas:
+Casos normales con factoriales conocidos.
+Caso de error con negativo (debe lanzar excepcion).
