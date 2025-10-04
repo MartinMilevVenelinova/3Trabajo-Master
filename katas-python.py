@@ -244,5 +244,82 @@ def dividir_usuario():
 if __name__ == "__main__":
     dividir_usuario()
 
-    
+
+# %% KATA 09 - Filtrar mascotas prohibidas
+# 9. Escribe una función que tome una lista de nombres de mascotas como parámetro y devuelva una nueva lista
+# excluyendo ciertas mascotas prohibidas en España. La lista de mascotas a excluir es ["Mapache", "Tigre",
+# "Serpiente Pitón", "Cocodrilo", "Oso"].Usa la función filter()
+
+from typing import List
+
+PROHIBIDAS = ["Mapache", "Tigre", "Serpiente Piton", "Cocodrilo", "Oso"]
+
+def filtrar_mascotas(mascotas: List[str]) -> List[str]:
+    """
+    Devuelve una nueva lista con las mascotas permitidas, excluyendo las prohibidas.
+    """
+    if not all(isinstance(nombre, str) for nombre in mascotas):
+        raise TypeError("Todos los elementos deben ser strings")
+
+    return list(filter(lambda m: m not in PROHIBIDAS, mascotas))
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert filtrar_mascotas(["Perro", "Gato", "Mapache"]) == ["Perro", "Gato"]
+    assert filtrar_mascotas(["Oso", "Conejo", "Tigre"]) == ["Conejo"]
+    assert filtrar_mascotas([]) == []
+
+    # Prueba de error: lista con un elemento no string
+    print("Probando filtrar_mascotas con valor no string...")
+    try:
+        filtrar_mascotas(["Perro", 123, "Gato"])
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(filtrar_mascotas(["Gato", "Serpiente Piton", "Tortuga"]))  # ['Gato', 'Tortuga']
+    print("KATA 09 - Filtrar mascotas prohibidas - OK")
+
+
+# %% KATA 10 - Promedio con excepcion personalizada
+# 10. Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, lanza una
+# excepción personalizada y maneja el error adecuadamente.
+
+from typing import List
+
+class ListaVaciaError(Exception):
+    """Excepcion personalizada para listas vacias."""
+    pass
+
+def calcular_promedio(numeros: List[float]) -> float:
+    """
+    Calcula el promedio de una lista de numeros.
+    Lanza ListaVaciaError si la lista esta vacia.
+    """
+    if not numeros:
+        raise ListaVaciaError("La lista de numeros esta vacia")
+    return sum(numeros) / len(numeros)
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert calcular_promedio([5, 10, 15]) == 10.0
+    assert calcular_promedio([2]) == 2.0
+    assert calcular_promedio([0, 0, 0]) == 0.0
+
+    # Prueba de error: lista vacia
+    print("Probando calcular_promedio con lista vacia...")
+    try:
+        calcular_promedio([])
+    except ListaVaciaError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(calcular_promedio([3, 6, 9]))  # 6.0
+    print("KATA 10 - Promedio con excepcion personalizada - OK")
+
+
 # %%
