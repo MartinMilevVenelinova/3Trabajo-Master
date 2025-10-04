@@ -322,4 +322,33 @@ if __name__ == "__main__":
     print("KATA 10 - Promedio con excepcion personalizada - OK")
 
 
+# %% KATA 11 - Validar edad del usuario
+# 11. Escribe un programa que pida al usuario que introduzca su edad. Si el usuario ingresa un valor no numérico o un
+# valor fuera del rango esperado (por ejemplo, menor que 0 o mayor que 120), maneja las excepciones
+# adecuadamente.
+
+def pedir_edad():
+    """
+    Pide al usuario su edad y valida que sea un numero entre 0 y 120.
+    Maneja errores de entrada no numerica y de rango.
+    """
+    try:
+        edad_str = input("Introduce tu edad: ")
+        if not edad_str.isdigit():
+            raise TypeError("El valor ingresado no es un numero valido.")
+        
+        edad = int(edad_str)
+        if edad < 0 or edad > 120:
+            raise ValueError("Edad fuera de rango permitido (0-120).")
+    except TypeError as e:
+        print("Error:", e)
+    except ValueError as e:
+        print("Error:", e)
+    else:
+        print("Edad valida. Tienes", edad, "años.")
+    finally:
+        print("Fin del programa.")
+
+if __name__ == "__main__":
+    pedir_edad()
 # %%
