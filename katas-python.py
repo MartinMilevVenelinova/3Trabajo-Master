@@ -624,4 +624,40 @@ if __name__ == "__main__":
     print("KATA 18 - Filtrar estudiantes con nota mayor o igual a 90 - OK")
 
 
+# %% KATA 19 - Filtrar numeros impares con lambda
+# 19. Crea una función lambda que filtre los números impares de una lista dada.
+
+from typing import List
+
+def filtrar_impares(numeros: List[int]) -> List[int]:
+    """
+    Devuelve una lista con los numeros impares de la lista original.
+    """
+    if not all(isinstance(n, int) for n in numeros):
+        raise TypeError("Todos los elementos deben ser numeros enteros")
+
+    impares = lambda x: x % 2 != 0
+    return list(filter(impares, numeros))
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert filtrar_impares([1, 2, 3, 4, 5]) == [1, 3, 5]
+    assert filtrar_impares([2, 4, 6, 8]) == []
+    assert filtrar_impares([7, 9, 11]) == [7, 9, 11]
+    assert filtrar_impares([]) == []
+
+    #prueba de error: elemento no numerico
+    print("Probando filtrar_impares con valor no numerico...")
+    try:
+        filtrar_impares([1, "a", 3])
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #demostracion visible
+    print(filtrar_impares([10, 11, 12, 13, 14, 15]))  # [11, 13, 15]
+    print("KATA 19 - Filtrar numeros impares con lambda - OK")
+
+    
 # %%
