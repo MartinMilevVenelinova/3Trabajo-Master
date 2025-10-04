@@ -130,3 +130,9 @@ Verifico que todos los elementos sean numericos antes de operar.
 Las pruebas cubren listas normales, vacias y un caso de error con un valor no numerico.
 
 ____________________________________________________________________________________________KATA 16__________________________________________________________________________________________
+
+La funcion recibe un texto y un numero entero n, y devuelve las palabras cuya longitud es mayor que n.
+Primero separo el texto en palabras con split().
+Luego uso filter() con lambda p: len(p) > n para quedarme solo con las mas largas.
+Controlo que el texto sea un str y n un entero.
+Las pruebas cubren frases normales, texto vacio y un caso de error con tipo de dato incorrecto.
