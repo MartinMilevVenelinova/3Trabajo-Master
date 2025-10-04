@@ -86,3 +86,14 @@ Pruebas:
 Casos con listas normales de numeros
 Caso con una lista vacia para forzar el error
 La definicion de una excepcion personalizada (class ListaVaciaError) permite extender el control de errores mas alla de las excepciones estandar.
+
+____________________________________________________________________________________________KATA 11__________________________________________________________________________________________
+
+El programa pide la edad al usuario y valida:
+Si el valor no es numerico (por ejemplo "hola" o "veinte") → se lanza un TypeError.
+Esto se detecta con .isdigit() antes de convertir a int.
+Si la edad esta fuera del rango permitido (0 a 120) → se lanza un ValueError.
+Si todo esta bien, muestra la edad ingresada.
+Siempre imprime "Fin del programa" al final con finally.
+
+
