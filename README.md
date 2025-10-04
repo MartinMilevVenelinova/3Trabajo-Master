@@ -143,3 +143,10 @@ La funcion recibe una lista de digitos y los combina para formar el numero compl
 Uso reduce() con lambda x, y: x * 10 + y para acumular los digitos uno a uno.
 Primero verifico que todos los elementos sean enteros entre 0 y 9, y que la lista no este vacia.
 Las pruebas cubren numeros normales, un solo digito y un caso de error con valor no valido.
+
+____________________________________________________________________________________________KATA 18__________________________________________________________________________________________
+
+La funcion recibe una lista de diccionarios con informacion de estudiantes (nombre, edad, calificacion).
+Usa filter() con lambda e: e.get("calificacion", 0) >= 90 para quedarse solo con los que tienen nota igual o superior a 90.
+Primero verifica que todos los elementos sean diccionarios.
+Las pruebas incluyen casos normales, con calificaciones varias, y un caso de error con un elemento que no es diccionario.
