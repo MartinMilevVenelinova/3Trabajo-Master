@@ -388,4 +388,45 @@ if __name__ == "__main__":
     print("KATA 12 - Longitud de palabras con map - OK")
 
     
+# %% KATA 13 - Lista de tuplas mayusculas y minusculas
+# 13. Genera una función la cual, para un conjunto de caracteres, devuelva una lista de tuplas con cada letra en
+# mayúsculas y minúsculas. Las letras no pueden estar repetidas .Usa la función map()
+
+from typing import List, Tuple
+
+def letras_mayus_minus(caracteres: str) -> List[Tuple[str, str]]:
+    """
+    Devuelve una lista de tuplas con cada letra en mayusculas y minusculas,
+    sin repetir caracteres y manteniendo el orden original.
+    """
+    if not isinstance(caracteres, str):
+        raise TypeError("El parametro debe ser una cadena de texto")
+
+    unicos = []
+    for c in caracteres.replace(" ", ""):
+        if c not in unicos:
+            unicos.append(c)
+
+    return list(map(lambda c: (c.upper(), c.lower()), unicos))
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert letras_mayus_minus("abc") == [('A', 'a'), ('B', 'b'), ('C', 'c')]
+    assert letras_mayus_minus("aabbcc") == [('A', 'a'), ('B', 'b'), ('C', 'c')]
+    assert letras_mayus_minus("Python") == [('P', 'p'), ('Y', 'y'), ('T', 't'), ('H', 'h'), ('O', 'o'), ('N', 'n')]
+
+    #prueba de error: parametro no string
+    print("Probando letras_mayus_minus con valor no string...")
+    try:
+        letras_mayus_minus(123)
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #demostracion visible
+    print(letras_mayus_minus("hola mundo"))  # [('H', 'h'), ('O', 'o'), ('L', 'l'), ('A', 'a'), ('M', 'm'), ('U', 'u'), ('N', 'n'), ('D', 'd')]
+    print("KATA 13 - Lista de tuplas mayusculas y minusculas - OK")
+
+    
 # %%
