@@ -578,4 +578,50 @@ if __name__ == "__main__":
     print("KATA 17 - Convertir lista de digitos a numero - OK")
 
 
+# %% KATA 18 - Filtrar estudiantes con nota mayor o igual a 90
+# 18. Escribe un programa en Python que cree una lista de diccionarios que contenga información de estudiantes
+# (nombre, edad, calificación) y use la función filter para extraer a los estudiantes con una calificación mayor o igual a
+# 90. Usa la función filter()
+
+from typing import List, Dict
+
+def filtrar_estudiantes(estudiantes: List[Dict[str, any]]) -> List[Dict[str, any]]:
+    """
+    Devuelve una lista con los estudiantes cuya calificacion es mayor o igual a 90.
+    """
+    if not all(isinstance(e, dict) for e in estudiantes):
+        raise TypeError("Todos los elementos deben ser diccionarios")
+
+    return list(filter(lambda e: e.get("calificacion", 0) >= 90, estudiantes))
+
+if __name__ == "__main__":
+    #lista de estudiantes
+    estudiantes = [
+        {"nombre": "Ana", "edad": 20, "calificacion": 95},
+        {"nombre": "Luis", "edad": 22, "calificacion": 88},
+        {"nombre": "Marta", "edad": 21, "calificacion": 90},
+        {"nombre": "Jose", "edad": 23, "calificacion": 75},
+    ]
+
+    #pruebas validas
+    resultado = filtrar_estudiantes(estudiantes)
+    assert resultado == [
+        {"nombre": "Ana", "edad": 20, "calificacion": 95},
+        {"nombre": "Marta", "edad": 21, "calificacion": 90},
+    ]
+
+    #prueba de error: elemento no diccionario
+    print("Probando filtrar_estudiantes con valor no diccionario...")
+    try:
+        filtrar_estudiantes([{"nombre": "Ana"}, "no es diccionario"])
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #demostracion visible
+    print(filtrar_estudiantes(estudiantes))
+    print("KATA 18 - Filtrar estudiantes con nota mayor o igual a 90 - OK")
+
+
 # %%
