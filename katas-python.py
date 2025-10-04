@@ -501,4 +501,41 @@ if __name__ == "__main__":
     print("KATA 15 - Sumar 3 a cada numero con lambda - OK")
 
     
+# %% KATA 16 - Palabras mas largas que n
+# 16. Escribe una función que tome una cadena de texto y un número entero n como parámetros y devuelva una lista de
+# todas las palabras que sean más largas que n. Usa la función filter()
+
+from typing import List
+
+def palabras_largas(texto: str, n: int) -> List[str]:
+    """
+    Devuelve una lista con las palabras del texto que tienen longitud mayor que n.
+    """
+    if not isinstance(texto, str):
+        raise TypeError("El primer parametro debe ser una cadena de texto")
+    if not isinstance(n, int):
+        raise TypeError("El segundo parametro debe ser un numero entero")
+
+    palabras = texto.split()
+    return list(filter(lambda p: len(p) > n, palabras))
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert palabras_largas("Python es un lenguaje poderoso y versatil", 6) == ["lenguaje", "poderoso", "versatil"]
+    assert palabras_largas("Hola mundo", 3) == ["Hola", "mundo"]
+    assert palabras_largas("", 2) == []
+
+    #prueba de error: parametro incorrecto
+    print("Probando palabras_largas con parametro no valido...")
+    try:
+        palabras_largas(123, 4)
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #demostracion visible
+    print(palabras_largas("Aprender Python es divertido", 5))  # ['Aprender', 'Python', 'divertido']
+    print("KATA 16 - Palabras mas largas que n - OK")
+    
 # %%
