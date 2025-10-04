@@ -151,3 +151,37 @@ if __name__ == "__main__":
 
 # %% KATA 06 - Factorial recursivo
 # 6. Escribe una funcion que calcule el factorial de un numero de manera recursiva.
+
+def factorial(n: int) -> int:
+    """
+    Calcula el factorial de un numero n de forma recursiva.
+    """
+    if n < 0:
+        raise ValueError("El numero no puede ser negativo")
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert factorial(0) == 1
+    assert factorial(1) == 1
+    assert factorial(3) == 6
+    assert factorial(5) == 120
+    assert factorial(7) == 5040
+
+    #prueba de error: numero negativo
+    try:
+        factorial(-3)
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # demostracion visible
+    print(factorial(4))    # 24
+    print(factorial(6))    # 720
+    print("KATA 06 - Factorial recursivo - OK")
+
+    
+# %%
