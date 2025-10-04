@@ -96,4 +96,15 @@ Si la edad esta fuera del rango permitido (0 a 120) → se lanza un ValueError.
 Si todo esta bien, muestra la edad ingresada.
 Siempre imprime "Fin del programa" al final con finally.
 
+____________________________________________________________________________________________KATA 12__________________________________________________________________________________________
+
+La funcion longitudes_palabras recibe una frase y devuelve una lista con la longitud de cada palabra.
+Comprueba que el argumento sea un string. Si no, lanza un TypeError.
+Usa split() para separar la frase por espacios.
+Aplica map(len, palabras) para calcular la longitud de cada palabra.
+Convierte el resultado de map() en una lista.
+Pruebas:
+Casos normales con frases con varias palabras.
+Frase vacia (devuelve lista vacia).
+Caso de error cuando el parametro no es string.
 
