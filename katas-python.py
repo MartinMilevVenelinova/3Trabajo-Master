@@ -59,6 +59,8 @@ if __name__ == "__main__":
     # Demostracion visible
     print(duplicar_lista([19, -5, 0.7])) # [38, -10, 1.4]
     print("KATA 02 - Duplicar valores con map() - OK")
+
+
 # %% KATA 03 - Palabras que contienen la palabra objetio
 # 3. Escribe una función que tome una lista de palabras y una palabra objetivo como parámetros. La función debe
 # devolver una lista con todas las palabras de la lista original que contengan la palabra objetivo.
@@ -79,4 +81,40 @@ if __name__ == "__main__":
     # Demostracion visible
     print(palabras_que_contienen(["hola", "adios", "ola"], "la")) # ['ola', 'hola']
     print("KATA 03 - Palabras que contienen la palabra objetio - OK")
-# %%
+
+
+# %% KATA 05 - Media y estado segun nota de aprobado
+# 5. Escribe una función que tome una lista de números como parámetro y un valor opcional nota_aprobado, que por 
+# defecto es 5. La función debe calcular la media de los números en la lista y determinar si la media es mayor o igual
+# que nota_aprobado. Si es así, el estado será "aprobado", de lo contrario, será "suspenso". La función debe devolver
+# una tupla que contenga la media y el estado.
+
+from typing import List, Tuple
+
+def evaluar_media(notas: List[float], nota_aprobado: float = 5.0) -> Tuple[float, str]:
+    """
+    Calcula la media de una lista de numeros y determina si esta aprobada o suspendida.
+    Devuelve una tupla con la media y el estado ('aprobado' o 'suspenso').
+    """
+    if not notas:
+        raise ValueError("La lista de notas no puede estar vacia.")
+
+    media = sum(notas) / len(notas)
+    estado = "aprobado" if media >= nota_aprobado else "suspenso"
+    return media, estado
+
+if __name__ == "__main__":
+    # pruebas
+    assert evaluar_media([5, 6, 7]) == (6.0, "aprobado")
+    assert evaluar_media([4, 5, 6], 6) == (5.0, "suspenso")
+    assert evaluar_media([3, 3, 3]) == (3.0, "suspenso")
+    assert evaluar_media([10], 7) == (10.0, "aprobado")
+
+    # Demostración visible
+    print(evaluar_media([5, 3, 7]))        # (5.0, 'aprobado')
+    print(evaluar_media([2, 3, 4, 5]))     # (3.5, 'suspenso')
+    print("KATA 05 - Media y estado segun nota de aprobado - OK")
+
+
+# %% KATA 06 - Factorial recursivo
+# 6. Escribe una funcion que calcule el factorial de un numero de manera recursiva.
