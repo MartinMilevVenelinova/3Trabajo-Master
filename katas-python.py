@@ -429,4 +429,41 @@ if __name__ == "__main__":
     print("KATA 13 - Lista de tuplas mayusculas y minusculas - OK")
 
     
+# %% KATA 14 - Palbras que comienzan con una letra
+# 14. Crea una función que retorne las palabras de una lista de palabras que comience con una letra en especifico. Usa la
+# función filter()
+ 
+from typing import List
+
+def palabras_con_letra(palabras: List[str], letra: str) -> List[str]:
+    """
+    Devuelve una lista con las palabras que comienzan con la letra indicada.
+    """
+    if not all(isinstance(p, str) for p in palabras):
+        raise TypeError("Todos los elementos de la lista deben ser strings")
+    if not isinstance(letra, str) or len(letra) != 1:
+        raise ValueError("La letra debe ser un solo caracter")
+
+    return list(filter(lambda p: p.lower().startswith(letra.lower()), palabras))
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert palabras_con_letra(["python", "java", "perl", "php"], "p") == ["python", "perl", "php"]
+    assert palabras_con_letra(["gato", "perro", "pez"], "p") == ["perro", "pez"]
+    assert palabras_con_letra([], "a") == []
+
+    # Prueba de error: letra no valida
+    print("Probando palabras_con_letra con letra no valida...")
+    try:
+        palabras_con_letra(["hola", "adios"], "ab")
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(palabras_con_letra(["casa", "coche", "perro", "conejo"], "c"))  # ['casa', 'coche', 'conejo']
+    print("KATA 14 - Palabras que comienzan con una letra - OK")
+
+    
 # %%
