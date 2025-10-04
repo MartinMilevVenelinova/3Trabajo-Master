@@ -67,5 +67,15 @@ Si no hay errores, muestra el resultado en el bloque else.
 El bloque finally siempre se ejecuta para mostrar que el programa termino.
 Este es un ejemplo clasico del uso completo de try / except / else / finally para manejar errores de entrada y control de flujo.
 
+____________________________________________________________________________________________KATA 09__________________________________________________________________________________________
+
+La funcion recibe una lista de nombres de mascotas y elimina las que aparecen en la lista de prohibidas.
+Uso filter() con una funcion lambda que conserva solo las que no estan en PROHIBIDAS.
+Antes de eso, reviso que todos los elementos de la lista sean str. Si no, lanzo un TypeError.
+Pruebas:
+Casos con mascotas permitidas y prohibidas mezcladas
+Lista vacia
+Caso con un elemento no string para forzar un error
+
 
 
