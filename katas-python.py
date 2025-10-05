@@ -696,4 +696,38 @@ if __name__ == "__main__":
     print("KATA 20 - Filtrar solo numeros enteros - OK")
 
 
+# %% KATA 21 - Calcular el cubo con lambda
+# 21. Crea una función que calcule el cubo de un número dado mediante una función lambda
+
+def cubo(numero):
+    """
+    Devuelve el cubo de un numero usando una funcion lambda.
+    """
+    if not isinstance(numero, (int, float)):
+        raise TypeError("El valor debe ser un numero")
+
+    calcular_cubo = lambda n: n ** 3
+    return calcular_cubo(numero)
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert cubo(2) == 8
+    assert cubo(-3) == -27
+    assert cubo(0) == 0
+    assert cubo(1.5) == 3.375
+
+    #prueba de error: valor no numerico
+    print("Probando cubo con valor no numerico...")
+    try:
+        cubo("a")
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #demostracion visible
+    print(cubo(5))   # 125
+    print("KATA 21 - Calcular el cubo con lambda - OK")
+
+
 # %%
