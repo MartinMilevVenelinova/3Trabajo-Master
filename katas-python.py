@@ -1157,4 +1157,41 @@ if __name__ == "__main__":
     print("KATA 32 - Buscar el puesto de un empleado por nombre - OK")
 
 
+# %% KATA 33 - Sumar elementos correspondientes de dos listas con lambda
+# 33. Crea una función lambda que sume elementos correspondientes de dos listas dadas.
+
+from typing import List
+
+def sumar_listas(lista1: List[int], lista2: List[int]) -> List[int]:
+    """
+    Devuelve una lista con la suma de los elementos correspondientes de dos listas.
+    """
+    if not all(isinstance(n, (int, float)) for n in lista1 + lista2):
+        raise TypeError("Ambas listas deben contener solo numeros")
+    if len(lista1) != len(lista2):
+        raise ValueError("Las listas deben tener la misma longitud")
+
+    sumar = lambda x, y: x + y
+    return list(map(sumar, lista1, lista2))
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert sumar_listas([1, 2, 3], [4, 5, 6]) == [5, 7, 9]
+    assert sumar_listas([10, 20], [1, 2]) == [11, 22]
+    assert sumar_listas([0, -1, -2], [1, 2, 3]) == [1, 1, 1]
+
+    # Prueba de error: longitudes distintas
+    print("Probando sumar_listas con longitudes distintas...")
+    try:
+        sumar_listas([1, 2, 3], [1, 2])
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(sumar_listas([5, 10, 15], [2, 4, 6]))  # [7, 14, 21]
+    print("KATA 33 - Sumar elementos correspondientes de dos listas - OK")
+
+
 # %%
