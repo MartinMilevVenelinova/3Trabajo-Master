@@ -178,3 +178,10 @@ La funcion recibe una lista de numeros y devuelve el producto total de todos sus
 Usa reduce(lambda x, y: x * y, numeros) para multiplicar acumulativamente cada valor de la lista.
 Verifica que todos los elementos sean numericos y que la lista no este vacia.
 Las pruebas cubren casos normales, con flotantes y el error cuando la lista esta vacia.
+
+____________________________________________________________________________________________KATA 23__________________________________________________________________________________________
+
+La funcion recibe una lista de palabras y devuelve una sola cadena con todas concatenadas.
+Usa reduce(lambda x, y: x + y, palabras) para unir cada palabra de la lista.
+Verifica que todos los elementos sean strings y que la lista no este vacia.
+Las pruebas incluyen listas normales y una prueba de error con lista vacia.
