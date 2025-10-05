@@ -353,3 +353,18 @@ De 12 a 19 → “tarde”
 De 20 a 23 y 0 a 5 → “noche”
 
 La funcion momento_del_dia() valida que la hora sea un entero valido, y el programa principal controla errores de entrada con mensajes claros.
+
+____________________________________________________________________________________________KATA 39__________________________________________________________________________________________
+
+La funcion calificacion_texto() recibe una nota numerica y devuelve su valor en texto:
+
+0–69 → insuficiente
+
+70–79 → bien
+
+80–89 → muy bien
+
+90–100 → excelente
+
+El programa valida que la nota sea un entero entre 0 y 100, y maneja errores de entrada de forma controlada.
+El resultado se muestra en formato claro: "La calificacion del alumno (nota) es: texto".
