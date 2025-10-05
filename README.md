@@ -171,3 +171,10 @@ La funcion recibe un numero y devuelve su cubo utilizando una lambda:
 lambda n: n ** 3.
 Primero verifica que el valor sea numerico (entero o flotante).
 Las pruebas incluyen valores positivos, negativos, cero, decimales y un caso de error con un tipo no numerico.
+
+____________________________________________________________________________________________KATA 22__________________________________________________________________________________________
+
+La funcion recibe una lista de numeros y devuelve el producto total de todos sus elementos.
+Usa reduce(lambda x, y: x * y, numeros) para multiplicar acumulativamente cada valor de la lista.
+Verifica que todos los elementos sean numericos y que la lista no este vacia.
+Las pruebas cubren casos normales, con flotantes y el error cuando la lista esta vacia.
