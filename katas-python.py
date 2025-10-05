@@ -659,5 +659,41 @@ if __name__ == "__main__":
     print(filtrar_impares([10, 11, 12, 13, 14, 15]))  # [11, 13, 15]
     print("KATA 19 - Filtrar numeros impares con lambda - OK")
 
-    
+
+# %% KATA 20 - Filtrar solo numeros enteros
+# 20. Para una lista con elementos tipo integer y string obtén una nueva lista sólo con los valores int. Usa la función
+# filter()
+
+from typing import List, Any
+
+def filtrar_enteros(elementos: List[Any]) -> List[int]:
+    """
+    Devuelve una nueva lista solo con los elementos de tipo entero.
+    """
+    if not isinstance(elementos, list):
+        raise TypeError("El parametro debe ser una lista")
+
+    return list(filter(lambda e: isinstance(e, int), elementos))
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert filtrar_enteros([1, "a", 2, "b", 3]) == [1, 2, 3]
+    assert filtrar_enteros(["hola", "mundo"]) == []
+    assert filtrar_enteros([10, 20, 30]) == [10, 20, 30]
+    assert filtrar_enteros([]) == []
+
+    #prueba de error: parametro no lista
+    print("Probando filtrar_enteros con parametro no lista...")
+    try:
+        filtrar_enteros("no es lista")
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #demostracion visible
+    print(filtrar_enteros([1, "2", 3, "cuatro", 5]))  # [1, 3, 5]
+    print("KATA 20 - Filtrar solo numeros enteros - OK")
+
+
 # %%
