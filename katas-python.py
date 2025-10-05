@@ -805,4 +805,45 @@ if __name__ == "__main__":
     # Demostracion visible
     print(concatenar_palabras(["Big", "Data", "Analytics"]))  # BigDataAnalytics
     print("KATA 23 - Concatenar lista de palabras con reduce - OK")
+
+
+# %% KATA 24 - Diferencia total de los valores de una lista con reduce
+# 24. Calcula la diferencia total en los valores de una lista. Usa la función reduce() .
+
+from functools import reduce
+from typing import List
+
+def diferencia_total(numeros: List[int]) -> int:
+    """
+    Calcula la diferencia total de los valores de una lista usando reduce().
+    """
+    if not all(isinstance(n, (int, float)) for n in numeros):
+        raise TypeError("Todos los elementos deben ser numeros")
+
+    if not numeros:
+        raise ValueError("La lista no puede estar vacia")
+
+    return reduce(lambda x, y: x - y, numeros)
+
+if __name__ == "__main__":
+    #Pruebas validas
+    assert diferencia_total([10, 5, 2]) == 3    # 10 - 5 - 2 = 3
+    assert diferencia_total([100, 50, 25]) == 25
+    assert diferencia_total([5]) == 5
+    assert diferencia_total([20.5, 5.5]) == 15.0
+
+    #prueba de error: lista vacia
+    print("Probando diferencia_total con lista vacia...")
+    try:
+        diferencia_total([])
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(diferencia_total([50, 10, 5, 2]))  # 33
+    print("KATA 24 - Diferencia total de los valores de una lista - OK")
+
+
 # %%
