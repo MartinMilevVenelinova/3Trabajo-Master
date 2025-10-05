@@ -1027,4 +1027,44 @@ if __name__ == "__main__":
     print(enmascarar("claveSecreta_1234"))  # ###########1234
     print("KATA 29 - Enmascarar una cadena de texto - OK")
 
+
+# %% KATA 30 - Comprobar si dos palabras son anagramas
+# 30. Crea una función que determine si dos palabras son anagramas, es decir, si están formadas por las mismas letras
+# pero en diferente orden.
+
+def son_anagramas(palabra1: str, palabra2: str) -> bool:
+    """
+    Devuelve True si las dos palabras son anagramas, False en caso contrario.
+    """
+    if not isinstance(palabra1, str) or not isinstance(palabra2, str):
+        raise TypeError("Ambos parametros deben ser cadenas de texto")
+
+    #convertir a minusculas y eliminar espacios
+    p1 = palabra1.replace(" ", "").lower()
+    p2 = palabra2.replace(" ", "").lower()
+
+    return sorted(p1) == sorted(p2)
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert son_anagramas("amor", "roma") is True
+    assert son_anagramas("python", "typhon") is True
+    assert son_anagramas("hola", "adios") is False
+    assert son_anagramas("Ana", "Naa") is True
+    assert son_anagramas("cosa", "caso") is True
+
+    # Prueba de error: parametro no string
+    print("Probando son_anagramas con parametro no string...")
+    try:
+        son_anagramas("hola", 123)
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #Demostracion visible
+    print(son_anagramas("listen", " Silent"))  # True
+    print("KATA 30 - Comprobar si dos palabras son anagramas - OK")
+
+
 # %%
