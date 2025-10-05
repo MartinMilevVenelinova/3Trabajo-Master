@@ -368,3 +368,22 @@ La funcion calificacion_texto() recibe una nota numerica y devuelve su valor en 
 
 El programa valida que la nota sea un entero entre 0 y 100, y maneja errores de entrada de forma controlada.
 El resultado se muestra en formato claro: "La calificacion del alumno (nota) es: texto".
+
+____________________________________________________________________________________________KATA 40__________________________________________________________________________________________
+
+La funcion calcular_area() recibe:
+
+figura: una cadena que puede ser "rectangulo", "circulo" o "triangulo".
+
+datos: una tupla con los valores necesarios para el calculo.
+
+Segun la figura:
+
+Rectangulo: base × altura
+
+Circulo: π × radio²
+
+Triangulo: (base × altura) ÷ 2
+
+Valida tipos, cantidad de datos y nombres de figuras, lanzando errores si algo es incorrecto.
+Las pruebas incluyen casos correctos, un error controlado y una demostracion visible.
