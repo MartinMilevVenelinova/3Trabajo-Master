@@ -1107,4 +1107,54 @@ Fin del programa.
 """
 
 
+# %% KATA 32 - Buscar el puesto de un empleado por nombre 
+# 32. Crea una función que tome un nombre completo y una lista de empleados, busque el nombre completo en la lista y
+# devuelve el puesto del empleado si está en la lista, de lo contrario, devuelve un mensaje indicando que la persona
+# no trabaja aquí.
+
+from typing import List, Dict
+
+def buscar_empleado(nombre: str, empleados: List[Dict[str, str]]) -> str:
+    """
+    Busca un empleado por nombre completo y devuelve su puesto si existe.
+    """
+    if not isinstance(nombre, str):
+        raise TypeError("El nombre debe ser una cadena de texto")
+    if not all(isinstance(e, dict) for e in empleados):
+        raise TypeError("La lista de empleados debe contener diccionarios")
+
+    for e in empleados:
+        if e.get("nombre", "").lower() == nombre.lower():
+            return e.get("puesto", "Puesto no especificado")
+    
+    return f"La persona '{nombre}' no trabaja aqui."
+
+if __name__ == "__main__":
+    #lista de empleados
+    empleados = [
+        {"nombre": "Ana Lopez", "puesto": "Analista de datos"},
+        {"nombre": "Luis Perez", "puesto": "Desarrollador"},
+        {"nombre": "Marta Ruiz", "puesto": "Gerente de proyecto"}
+    ]
+
+    # Pruebas validas
+    assert buscar_empleado("Ana Lopez", empleados) == "Analista de datos"
+    assert buscar_empleado("Luis Perez", empleados) == "Desarrollador"
+    assert buscar_empleado("Pedro Gomez", empleados) == "La persona 'Pedro Gomez' no trabaja aqui."
+
+    # Prueba de error: parametro incorrecto
+    print("Probando buscar_empleado con parametro no valido...")
+    try:
+        buscar_empleado(123, empleados)
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(buscar_empleado("Marta Ruiz", empleados))  # Gerente de proyecto
+    print(buscar_empleado("Juan Torres", empleados)) # La persona 'Juan Torres' no trabaja aqui.
+    print("KATA 32 - Buscar el puesto de un empleado por nombre - OK")
+
+
 # %%
