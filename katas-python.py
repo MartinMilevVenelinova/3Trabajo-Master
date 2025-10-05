@@ -730,4 +730,43 @@ if __name__ == "__main__":
     print("KATA 21 - Calcular el cubo con lambda - OK")
 
 
+# %% KATA 22 - Producto total de una lista con reduce
+# 22. Dada una lista numérica, obtén el producto total de los valores de dicha lista.Usa la función reduce() .
+
+from functools import reduce
+from typing import List
+
+def producto_total(numeros: List[int]) -> int:
+    """
+    Devuelve el producto total de los valores de una lista usando reduce().
+    """
+    if not all(isinstance(n, (int, float)) for n in numeros):
+        raise TypeError("Todos los elementos deben ser numeros")
+
+    if not numeros:
+        raise ValueError("La lista no puede estar vacia")
+
+    return reduce(lambda x, y: x * y, numeros)
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert producto_total([1, 2, 3, 4]) == 24
+    assert producto_total([5, 5]) == 25
+    assert producto_total([10]) == 10
+    assert producto_total([2.0, 3.0]) == 6.0
+
+    # Prueba de error: lista vacia
+    print("Probando producto_total con lista vacia...")
+    try:
+        producto_total([])
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(producto_total([2, 3, 4]))  # 24
+    print("KATA 22 - Producto total de una lista con reduce - OK")
+
+
 # %%
