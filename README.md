@@ -198,3 +198,10 @@ ________________________________________________________________________________
 La funcion recibe una cadena y devuelve la cantidad total de caracteres usando len().
 Controlo que el parametro sea un str antes de contar.
 Las pruebas incluyen cadenas normales, vacias, con espacios y un caso de error cuando el parametro no es texto.
+
+____________________________________________________________________________________________KATA 26__________________________________________________________________________________________
+
+La funcion recibe dos numeros y devuelve el resto de su division usando una lambda:
+lambda x, y: x % y.
+Primero verifica que ambos parametros sean numericos y que el divisor no sea cero.
+Las pruebas incluyen divisiones exactas, con decimales y un caso de error por division por cero.
