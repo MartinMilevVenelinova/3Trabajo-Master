@@ -244,4 +244,12 @@ Luego pide un nombre a buscar y verifica si esta en la lista con if nombre_busca
 Si no esta, lanza una excepcion ValueError con un mensaje personalizado.
 Siempre imprime “Fin del programa” al final gracias al bloque finally.
 
+____________________________________________________________________________________________KATA 32__________________________________________________________________________________________
+
+La funcion busca un nombre dentro de una lista de empleados (cada uno representado como un diccionario con nombre y puesto).
+Si encuentra el nombre, devuelve su puesto. Si no lo encuentra, devuelve un mensaje diciendo que la persona no trabaja alli.
+Compara los nombres en minusculas para evitar problemas de mayusculas/minusculas.
+Las pruebas incluyen empleados existentes, uno inexistente y un error de tipo de dato.
+
+
 
