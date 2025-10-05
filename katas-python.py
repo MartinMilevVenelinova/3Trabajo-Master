@@ -770,3 +770,39 @@ if __name__ == "__main__":
 
 
 # %%
+# 23. Concatena una lista de palabras.Usa la función reduce() .
+
+from functools import reduce
+from typing import List
+
+def concatenar_palabras(palabras: List[str]) -> str:
+    """
+    Devuelve una sola cadena con todas las palabras concatenadas.
+    """
+    if not all(isinstance(p, str) for p in palabras):
+        raise TypeError("Todos los elementos deben ser cadenas de texto")
+
+    if not palabras:
+        raise ValueError("La lista no puede estar vacia")
+
+    return reduce(lambda x, y: x + y, palabras)
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert concatenar_palabras(["Hola", "Mundo"]) == "HolaMundo"
+    assert concatenar_palabras(["Python", "Es", "Genial"]) == "PythonEsGenial"
+    assert concatenar_palabras(["A", "B", "C"]) == "ABC"
+
+    # Prueba de error: lista vacia
+    print("Probando concatenar_palabras con lista vacia...")
+    try:
+        concatenar_palabras([])
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(concatenar_palabras(["Big", "Data", "Analytics"]))  # BigDataAnalytics
+    print("KATA 23 - Concatenar lista de palabras con reduce - OK")
+# %%
