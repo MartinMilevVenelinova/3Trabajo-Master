@@ -330,3 +330,14 @@ Los errores de tipo o valor se capturan y muestran sin detener el programa.
 Todo se mantiene activo en un bucle interactivo hasta que el usuario elige la opcion 7 (Salir).
 
 ____________________________________________________________________________________________KATA 37__________________________________________________________________________________________
+
+La funcion procesar_texto() llama a una de tres funciones segun la opcion indicada:
+
+contar → llama a contar_palabras() y devuelve un diccionario con la frecuencia de cada palabra.
+
+reemplazar → llama a reemplazar_palabras() para sustituir una palabra por otra.
+
+eliminar → llama a eliminar_palabra() para quitar una palabra del texto.
+
+Cada subfuncion valida los tipos de datos y maneja los argumentos segun la opcion.
+El caso de uso demuestra los tres modos de procesamiento usando un mismo texto.
