@@ -1195,3 +1195,152 @@ if __name__ == "__main__":
 
 
 # %%
+# 34. Crea la clase Arbol , define un árbol genérico con un tronco y ramas como atributos. Los métodos disponibles son:
+# crecer_tronco , nueva_rama , crecer_ramas , quitar_rama e info_arbol . El objetivo es implementar estos métodos para
+# manipular la estructura del árbol.
+
+from typing import List, Dict, Optional
+
+class Arbol:
+    def __init__(self):
+        self.tronco = 1
+        self.ramas: List[int] = []
+
+    def crecer_tronco(self, cantidad: int = 1):
+        if not isinstance(cantidad, int):
+            raise TypeError("La cantidad de crecimiento del tronco debe ser un entero")
+        if cantidad <= 0:
+            raise ValueError("La cantidad de crecimiento del tronco debe ser positiva")
+        self.tronco += cantidad
+        print(f"El tronco ha crecido {cantidad} unidad(es). Longitud actual: {self.tronco}")
+
+    def nueva_rama(self, cantidad: int = 1):
+        if not isinstance(cantidad, int):
+            raise TypeError("La cantidad de ramas debe ser un entero")
+        if cantidad <= 0:
+            raise ValueError("La cantidad de ramas debe ser positiva")
+        for _ in range(cantidad):
+            self.ramas.append(1)
+        print(f"Se ha(n) agregado {cantidad} rama(s) de longitud 1. Total ramas: {len(self.ramas)} -> {self.ramas}")
+
+    def crecer_ramas(self, cantidad: int = 1):
+        if not isinstance(cantidad, int):
+            raise TypeError("La cantidad de crecimiento de ramas debe ser un entero")
+        if cantidad <= 0:
+            raise ValueError("La cantidad de crecimiento de ramas debe ser positiva")
+        if not self.ramas:
+            print("No hay ramas para crecer.")
+            return
+        self.ramas = [r + cantidad for r in self.ramas]
+        print(f"Todas las ramas han crecido {cantidad} unidad(es). Longitudes: {self.ramas}")
+
+    def quitar_rama(self, posicion: int):
+        if not isinstance(posicion, int):
+            raise TypeError("La posicion debe ser un numero entero")
+        if not self.ramas:
+            raise IndexError("No hay ramas para quitar")
+        if posicion < 0 or posicion >= len(self.ramas):
+            raise IndexError(f"Posicion de rama invalida (0..{len(self.ramas)-1})")
+        valor = self.ramas.pop(posicion)
+        print(f"Se ha quitado la rama en la posicion {posicion} (longitud {valor}). Ramas restantes: {self.ramas}")
+
+    def info_arbol(self) -> Dict[str, object]:
+        info = {
+            "longitud_tronco": self.tronco,
+            "numero_ramas": len(self.ramas),
+            "longitudes_ramas": list(self.ramas)
+        }
+        print("Estado actual del arbol:", info)
+        return info
+
+
+def leer_entero(prompt: str, por_defecto: Optional[int] = None) -> int:
+    """
+    Lee un entero desde input(). Si el usuario pulsa Enter y por_defecto no es None, devuelve por_defecto.
+    Lanza ValueError si no es convertible a int.
+    """
+    texto = input(prompt).strip()
+    if texto == "" and por_defecto is not None:
+        return por_defecto
+    try:
+        return int(texto)
+    except ValueError:
+        raise ValueError("Se esperaba un numero entero")
+
+
+def menu():
+    arbol: Optional[Arbol] = None
+
+    while True:
+        print("\n--- MENU ARBOL ---")
+        print("1. Crear arbol")
+        print("2. Crecer tronco (cantidad opcional)")
+        print("3. Agregar nueva(s) rama(s) (cantidad opcional)")
+        print("4. Crecer todas las ramas (cantidad opcional)")
+        print("5. Quitar rama por posicion")
+        print("6. Mostrar informacion del arbol")
+        print("7. Salir")
+
+        opcion = input("Selecciona una opcion (1-7): ").strip()
+
+        try:
+            if opcion == "1":
+                if arbol is not None:
+                    print("Ya existe un arbol creado. No puedes crear otro.")
+                else:
+                    arbol = Arbol()
+                    print("Arbol creado (tronco=1, ramas=[]).")
+
+            elif opcion == "2":
+                if arbol is None:
+                    print("Primero debes crear el arbol (opcion 1).")
+                else:
+                    cantidad = leer_entero("Cuanto debe crecer el tronco? (Enter = 1): ", por_defecto=1)
+                    arbol.crecer_tronco(cantidad)
+
+            elif opcion == "3":
+                if arbol is None:
+                    print("Primero debes crear el arbol (opcion 1).")
+                else:
+                    cantidad = leer_entero("Cuantas ramas nuevas agregar? (Enter = 1): ", por_defecto=1)
+                    arbol.nueva_rama(cantidad)
+
+            elif opcion == "4":
+                if arbol is None:
+                    print("Primero debes crear el arbol (opcion 1).")
+                else:
+                    cantidad = leer_entero("Cuanto deben crecer las ramas? (Enter = 1): ", por_defecto=1)
+                    arbol.crecer_ramas(cantidad)
+
+            elif opcion == "5":
+                if arbol is None:
+                    print("Primero debes crear el arbol (opcion 1).")
+                else:
+                    if not arbol.ramas:
+                        print("El arbol no tiene ramas para quitar.")
+                    else:
+                        print(f"Ramas actuales (indices 0..{len(arbol.ramas)-1}): {arbol.ramas}")
+                        pos = leer_entero("Introduce la posicion de la rama a quitar: ")
+                        arbol.quitar_rama(pos)
+
+            elif opcion == "6":
+                if arbol is None:
+                    print("Primero debes crear el arbol (opcion 1).")
+                else:
+                    arbol.info_arbol()
+
+            elif opcion == "7":
+                print("Saliendo del programa.")
+                break
+
+            else:
+                print("Opcion no valida. Elige entre 1 y 7.")
+
+        except (TypeError, ValueError, IndexError) as e:
+            print("Error:", e)
+
+
+if __name__ == "__main__":
+    menu()
+
+# %%
