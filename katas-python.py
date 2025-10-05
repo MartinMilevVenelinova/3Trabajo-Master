@@ -989,4 +989,42 @@ if __name__ == "__main__":
     #demostracion visible
     print(primer_duplicado([9, 7, 3, 5, "leon", "león", 5]))  
     print("KATA 28 - Buscar el primer elemento duplicado en una lista - OK")
+
+
+# %% KATA 29 - Enmascarar una cadena de texto
+# 29. Crea una función que convierta una variable en una cadena de texto y enmascare todos los caracteres con el
+# carácter '#', excepto los últimos cuatro.
+
+def enmascarar(valor) -> str:
+    """
+    Convierte el valor en texto y reeemplaza todos los caracteres con '#',
+    excepto los ultimos cuatro.
+    """
+    texto = str(valor)
+
+    if len(texto) <= 4:
+        return texto
+
+    return "#" * (len(texto) - 4) + texto[-4:]
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert enmascarar("123456789") == "#####6789"
+    assert enmascarar(987654321) == "#####4321"
+    assert enmascarar("abcd") == "abcd"
+    assert enmascarar("hi") == "hi"
+
+    #prueba de error: valor None
+    print("Probando enmascarar con valor None...")
+    try:
+        enmascarar(None)
+    except Exception as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(enmascarar("claveSecreta_1234"))  # ###########1234
+    print("KATA 29 - Enmascarar una cadena de texto - OK")
+
 # %%
