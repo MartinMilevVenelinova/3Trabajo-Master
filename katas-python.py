@@ -1579,4 +1579,98 @@ if __name__ == "__main__":
     menu()
 
 
+# %% KATA 37 - Procesar texto
+#37. Crea una función llamada procesar_texto que procesa un texto según la opción especificada: contar_palabras ,
+#reemplazar_palabras , eliminar_palabra . Estas opciones son otras funciones que tenemos que definir primero y llamar dentro
+#de la función procesar_texto .
+#Código a seguir:
+#1. Crear una función contar_palabras para contar el número de veces que aparece cada palabra en el texto. Tiene
+#que devolver un diccionario.
+#2. Crear una función reemplazar_palabras para remplazar una palabra_original del texto por una palabra_nueva . Tiene
+#que devolver el texto con el remplazo de palabras.
+#3. Crear una función eliminar_palabra para eliminar una palabra del texto. Tiene que devolver el texto con la palabra
+#eliminada.
+#4. Crear la función procesar_texto que tome un texto, una opción(entre "contar", "reemplazar", "eliminar") y un
+#número de argumentos variable según la opción indicada.
+#Caso de uso:
+#Comprueba el funcionamiento completo de la función procesar_texto
+
+from typing import Dict
+
+def contar_palabras(texto: str) -> Dict[str, int]:
+    """
+    Cuenta cuantas veces aparece cada palabra en el texto y devuelve un diccionario.
+    """
+    if not isinstance(texto, str):
+        raise TypeError("El texto debe ser una cadena de texto")
+    palabras = texto.lower().split()
+    conteo = {}
+    for p in palabras:
+        conteo[p] = conteo.get(p, 0) + 1
+    return conteo
+
+
+def reemplazar_palabras(texto: str, palabra_original: str, palabra_nueva: str) -> str:
+    """
+    Reemplaza todas las apariciones de palabra_original po palabra_nueva en el texto.
+    """
+    if not all(isinstance(x, str) for x in [texto, palabra_original, palabra_nueva]):
+        raise TypeError("Todos los parametros deben ser cadenas de texto")
+    return texto.replace(palabra_original, palabra_nueva)
+
+
+def eliminar_palabra(texto: str, palabra_eliminar: str) -> str:
+    """
+    Elimina todas las apariciones de palabra_eliminar del texto.
+    """
+    if not all(isinstance(x, str) for x in [texto, palabra_eliminar]):
+        raise TypeError("Todos los parametros deben ser cadenas de texto")
+    palabras = texto.split()
+    resultado = [p for p in palabras if p != palabra_eliminar]
+    return " ".join(resultado)
+
+
+def procesar_texto(texto: str, opcion: str, *args):
+    """
+    Procesa el texto segun la opcion indicada:
+    -'contar': cuenta palabras
+    -'reemplazar':reemplaza palabra_original por palabra_nueva
+    -'eliminar': elimina una palabra del texto
+    """
+    if opcion == "contar":
+        return contar_palabras(texto)
+    elif opcion == "reemplazar":
+        if len(args) != 2:
+            raise ValueError("Se requieren 2 argumentos: palabra_original y palabra_nueva")
+        return reemplazar_palabras(texto, args[0], args[1])
+    elif opcion == "eliminar":
+        if len(args) != 1:
+            raise ValueError("Se requiere 1 argumento: palabra a eliminar")
+        return eliminar_palabra(texto, args[0])
+    else:
+        raise ValueError("Opcion no valida. Usa 'contar', 'reemplazar' o 'eliminar'.")
+
+
+if __name__ == "__main__":
+    # Caso de uso: probar todas las funciones
+    texto = "Python es divertido y Python es poderoso"
+
+    print("Texto original:")
+    print(texto)
+
+    # Contar palabras
+    resultado_contar = procesar_texto(texto, "contar")
+    print("\nConteo de palabras:", resultado_contar)
+
+    # Reemplazar palabra
+    resultado_reemplazar = procesar_texto(texto, "reemplazar", "Python", "Java")
+    print("\nTexto tras reemplazo:", resultado_reemplazar)
+
+    # Eliminar palabra
+    resultado_eliminar = procesar_texto(texto, "eliminar", "es")
+    print("\nTexto tras eliminar palabra:", resultado_eliminar)
+
+    print("\nKATA 37 - Procesar texto - OK")
+
+    
 # %%
