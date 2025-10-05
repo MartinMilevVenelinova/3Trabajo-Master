@@ -192,3 +192,9 @@ La funcion recibe una lista de numeros y calcula la diferencia total de izquierd
 Usa reduce(lambda x, y: x - y, numeros) para restar cada elemento sucesivo.
 Primero valida que todos los valores sean numericos y que la lista no este vacia.
 Las pruebas incluyen listas de enteros, flotantes y una prueba de error con lista vacia.
+
+____________________________________________________________________________________________KATA 25__________________________________________________________________________________________
+
+La funcion recibe una cadena y devuelve la cantidad total de caracteres usando len().
+Controlo que el parametro sea un str antes de contar.
+Las pruebas incluyen cadenas normales, vacias, con espacios y un caso de error cuando el parametro no es texto.
