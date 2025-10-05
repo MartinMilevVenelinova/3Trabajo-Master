@@ -150,3 +150,11 @@ La funcion recibe una lista de diccionarios con informacion de estudiantes (nomb
 Usa filter() con lambda e: e.get("calificacion", 0) >= 90 para quedarse solo con los que tienen nota igual o superior a 90.
 Primero verifica que todos los elementos sean diccionarios.
 Las pruebas incluyen casos normales, con calificaciones varias, y un caso de error con un elemento que no es diccionario.
+
+____________________________________________________________________________________________KATA 19__________________________________________________________________________________________
+
+La funcion recibe una lista de numeros y devuelve solo los impares.
+Uso una lambda lambda x: x % 2 != 0 junto con filter() para quedarme con los numeros que no son divisibles por 2.
+Controlo que todos los elementos sean enteros.
+Las pruebas incluyen listas mixtas, solo pares, solo impares y una vacia, ademas de un caso de error con un valor no numerico.
+
