@@ -846,4 +846,37 @@ if __name__ == "__main__":
     print("KATA 24 - Diferencia total de los valores de una lista - OK")
 
 
+# %% KATA 25 - Contar caracteres en una cadena
+# 25. Crea una función que cuente el número de caracteres en una cadena de texto dada.
+
+def contar_caracteres(texto: str) -> int:
+    """
+    Devuelve el numero total de caracteres en una cadena de texto.
+    """
+    if not isinstance(texto, str):
+        raise TypeError("El parametro debe ser una cadena de texto")
+
+    return len(texto)
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert contar_caracteres("Hola") == 4
+    assert contar_caracteres("Python") == 6
+    assert contar_caracteres("") == 0
+    assert contar_caracteres("Big Data") == 8  # incluye espacio
+
+    # Prueba de error: parametro no string
+    print("Probando contar_caracteres con parametro no string...")
+    try:
+        contar_caracteres(123)
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # demostracion visible
+    print(contar_caracteres("BigDataAnalytics")) # 16
+    print("KATA 25 - Contar caracteres en una cadena - OK")
+
+    
 # %%
