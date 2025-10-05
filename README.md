@@ -205,3 +205,9 @@ La funcion recibe dos numeros y devuelve el resto de su division usando una lamb
 lambda x, y: x % y.
 Primero verifica que ambos parametros sean numericos y que el divisor no sea cero.
 Las pruebas incluyen divisiones exactas, con decimales y un caso de error por division por cero.
+
+____________________________________________________________________________________________KATA 27__________________________________________________________________________________________
+
+La funcion recibe una lista de numeros y devuelve su promedio usando sum(numeros) / len(numeros).
+Primero valida que todos los elementos sean numericos y que la lista no este vacia.
+Las pruebas incluyen listas normales, con flotantes y una prueba de error cuando la lista esta vacia.
