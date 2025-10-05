@@ -227,3 +227,13 @@ Si la longitud del texto es menor o igual a 4, devuelve el texto sin cambios.
 Se aplica el enmascarado con:
 "#" * (len(texto) - 4) + texto[-4:]
 Las pruebas incluyen cadenas, numeros, textos cortos y una prueba de error con None.
+
+____________________________________________________________________________________________KATA 30__________________________________________________________________________________________
+
+La funcion compara dos palabras para ver si son anagramas:
+Convierte ambas a minusculas y elimina espacios.
+Usa sorted() para ordenar las letras y compara las listas resultantes.
+Si son iguales, devuelve True; si no, False.
+Las pruebas incluyen casos con mayusculas, espacios, palabras no anagramas y un caso de error con tipo de dato incorrecto.
+
+
