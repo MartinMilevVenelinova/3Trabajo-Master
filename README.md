@@ -251,5 +251,12 @@ Si encuentra el nombre, devuelve su puesto. Si no lo encuentra, devuelve un mens
 Compara los nombres en minusculas para evitar problemas de mayusculas/minusculas.
 Las pruebas incluyen empleados existentes, uno inexistente y un error de tipo de dato.
 
+____________________________________________________________________________________________KATA 33__________________________________________________________________________________________
+
+La funcion recibe dos listas numericas y devuelve una nueva lista con la suma de los elementos en la misma posicion.
+Usa una lambda lambda x, y: x + y junto con map() para realizar la suma elemento a elemento.
+Valida que las listas tengan la misma longitud y que todos los elementos sean numericos.
+Las pruebas incluyen casos normales, negativos y un error con longitudes distintas.
+
 
 
