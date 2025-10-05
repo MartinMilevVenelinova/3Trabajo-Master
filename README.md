@@ -341,3 +341,15 @@ eliminar → llama a eliminar_palabra() para quitar una palabra del texto.
 
 Cada subfuncion valida los tipos de datos y maneja los argumentos segun la opcion.
 El caso de uso demuestra los tres modos de procesamiento usando un mismo texto.
+
+____________________________________________________________________________________________KATA 38__________________________________________________________________________________________
+
+El programa pide al usuario una hora (0–23) y determina el momento del dia segun el rango:
+
+De 6 a 11 → “dia”
+
+De 12 a 19 → “tarde”
+
+De 20 a 23 y 0 a 5 → “noche”
+
+La funcion momento_del_dia() valida que la hora sea un entero valido, y el programa principal controla errores de entrada con mensajes claros.
