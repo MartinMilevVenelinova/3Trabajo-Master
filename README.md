@@ -219,3 +219,11 @@ Cada vez que encuentra un elemento que ya estaba en el conjunto, lo devuelve com
 Si no hay duplicados, devuelve None.
 Tambien valida que el parametro sea una lista antes de procesar.
 Las pruebas incluyen listas con duplicados, sin duplicados, vacias y un caso de error con un parametro no valido.
+
+____________________________________________________________________________________________KATA 29__________________________________________________________________________________________
+
+La funcion convierte cualquier valor en texto con str(valor) y reemplaza todos los caracteres menos los ultimos cuatro por #.
+Si la longitud del texto es menor o igual a 4, devuelve el texto sin cambios.
+Se aplica el enmascarado con:
+"#" * (len(texto) - 4) + texto[-4:]
+Las pruebas incluyen cadenas, numeros, textos cortos y una prueba de error con None.
