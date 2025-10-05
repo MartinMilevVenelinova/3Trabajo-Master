@@ -387,3 +387,15 @@ Triangulo: (base × altura) ÷ 2
 
 Valida tipos, cantidad de datos y nombres de figuras, lanzando errores si algo es incorrecto.
 Las pruebas incluyen casos correctos, un error controlado y una demostracion visible.
+
+____________________________________________________________________________________________KATA 41__________________________________________________________________________________________
+
+El programa pide el precio original y pregunta si el usuario tiene un cupon de descuento.
+
+Si responde "si", solicita el valor del cupon y aplica el descuento solo si es valido (mayor que 0 y menor que el precio).
+
+Si responde "no", muestra el precio original sin cambios.
+
+Si la respuesta no es valida, asume que no hay cupon.
+
+Usa condicionales if, elif, else para controlar las decisiones, mostrando siempre el precio final y un resumen de la compra.
