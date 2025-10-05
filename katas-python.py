@@ -1709,4 +1709,47 @@ if __name__ == "__main__":
     print("KATA 38 - Determinar si es de dia, tarde o noche - OK")
 
 
+# %% KATA 39 - Determinar calificacion en texto segun nota numerica
+# 39. Escribe un programa que determine qué calificación en texto tiene un alumno en base a su calificación numérica.
+# Las reglas de calificación son:
+# 0 - 69 -> insuficiente
+# 70 - 79 -> bien
+# 80 - 89 -> muy bien
+# 90 - 100 -> excelente
+
+def calificacion_texto(nota: int) -> str:
+    """
+    Devuelve la calificacion en texto segun la nota numerica.
+    """
+    if not isinstance(nota, int):
+        raise TypeError("La nota debe ser un numero entero")
+    if nota < 0 or nota > 100:
+        raise ValueError("La nota debe estar entre 0 y 100")
+
+    if nota < 70:
+        return "insuficiente"
+    elif nota < 80:
+        return "bien"
+    elif nota < 90:
+        return "muy bien"
+    else:
+        return "excelente"
+
+
+if __name__ == "__main__":
+    try:
+        nota_usuario = input("Introduce la calificacion del alumno (0-100): ").strip()
+        if not nota_usuario.isdigit():
+            raise ValueError("Debes ingresar un numero entero entre 0 y 100")
+
+        nota = int(nota_usuario)
+        resultado = calificacion_texto(nota)
+        print(f"La calificacion del alumno ({nota}) es: {resultado}")
+
+    except (TypeError, ValueError) as e:
+        print("Error:", e)
+
+    print("KATA 39 - Determinar calificacion en texto - OK")
+
+    
 # %%
