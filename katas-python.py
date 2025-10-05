@@ -878,5 +878,40 @@ if __name__ == "__main__":
     print(contar_caracteres("BigDataAnalytics")) # 16
     print("KATA 25 - Contar caracteres en una cadena - OK")
 
-    
+
+# %% KATA 26 - Calcular el resto de la division con lambda
+# 26. Crea una función lambda que calcule el resto de la división entre dos números dados
+
+def resto_division(a, b):
+    """
+    Devuelve el resto de la division entre dos numeros usando una funcion lambda.
+    """
+    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+        raise TypeError("Ambos valores deben ser numeros")
+    if b == 0:
+        raise ZeroDivisionError("No se puede dividir por cero")
+
+    resto = lambda x, y: x % y
+    return resto(a, b)
+
+if __name__ == "__main__":
+    #pruebas validas
+    assert resto_division(10, 3) == 1
+    assert resto_division(25, 5) == 0
+    assert resto_division(7, 4) == 3
+    assert resto_division(9.5, 2.5) == 2.0
+
+    # Prueba de error: division por cero
+    print("Probando resto_division con division por cero...")
+    try:
+        resto_division(10, 0)
+    except ZeroDivisionError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(resto_division(20, 6))  # 2
+    print("KATA 26 - Calcular el resto de la division con lambda - OK")
+
 # %%
