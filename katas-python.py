@@ -1672,5 +1672,41 @@ if __name__ == "__main__":
 
     print("\nKATA 37 - Procesar texto - OK")
 
-    
+
+# %% KATA 38 - Determinar si es de dia, tarde o noche segun la hora
+# 38. Genera un programa que nos diga si es de noche, de día o tarde según la hora proporcionada por el usuario.
+
+def momento_del_dia(hora: int) -> str:
+    """
+    Devuelve 'noche', 'dia' o 'tarde' segun la hora proporcionada(0-23).
+    """
+    if not isinstance(hora, int):
+        raise TypeError("La hora debe ser un numero entero")
+    if hora < 0 or hora > 23:
+        raise ValueError("La hora debe estar entre 0 y 23")
+
+    if 6 <= hora < 12:
+        return "dia"
+    elif 12 <= hora < 20:
+        return "tarde"
+    else:
+        return "noche"
+
+
+if __name__ == "__main__":
+    try:
+        hora_usuario = input("Introduce la hora actual (0-23): ").strip()
+        if not hora_usuario.isdigit():
+            raise ValueError("Debes ingresar un numero entero entre 0 y 23")
+
+        hora = int(hora_usuario)
+        resultado = momento_del_dia(hora)
+        print(f"Son las {hora}:00, por lo tanto es {resultado}.")
+
+    except (TypeError, ValueError) as e:
+        print("Error:", e)
+
+    print("KATA 38 - Determinar si es de dia, tarde o noche - OK")
+
+
 # %%
