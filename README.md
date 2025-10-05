@@ -185,3 +185,10 @@ La funcion recibe una lista de palabras y devuelve una sola cadena con todas con
 Usa reduce(lambda x, y: x + y, palabras) para unir cada palabra de la lista.
 Verifica que todos los elementos sean strings y que la lista no este vacia.
 Las pruebas incluyen listas normales y una prueba de error con lista vacia.
+
+____________________________________________________________________________________________KATA 24__________________________________________________________________________________________
+
+La funcion recibe una lista de numeros y calcula la diferencia total de izquierda a derecha.
+Usa reduce(lambda x, y: x - y, numeros) para restar cada elemento sucesivo.
+Primero valida que todos los valores sean numericos y que la lista no este vacia.
+Las pruebas incluyen listas de enteros, flotantes y una prueba de error con lista vacia.
