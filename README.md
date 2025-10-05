@@ -158,3 +158,9 @@ Uso una lambda lambda x: x % 2 != 0 junto con filter() para quedarme con los num
 Controlo que todos los elementos sean enteros.
 Las pruebas incluyen listas mixtas, solo pares, solo impares y una vacia, ademas de un caso de error con un valor no numerico.
 
+____________________________________________________________________________________________KATA 20__________________________________________________________________________________________
+
+La funcion recibe una lista con elementos mezclados (enteros y strings) y devuelve solo los que son enteros.
+Uso filter() con lambda e: isinstance(e, int) para quedarme unicamente con los valores de tipo int.
+Controlo que el parametro sea una lista antes de aplicar el filtro.
+Las pruebas cubren listas mixtas, solo texto, solo numeros, lista vacia y un caso de error con un valor que no es lista.
