@@ -277,4 +277,56 @@ El programa incluye un menu interactivo que permite al usuario crear un arbol y 
 El estado del arbol se mantiene entre operaciones: el tronco y las ramas van creciendo segun las acciones realizadas.
 Tambien se manejan todas las combinaciones posibles de errores, como intentar usar el arbol antes de crearlo, introducir valores no numericos, posiciones invalidas o cantidades negativas.
 
+____________________________________________________________________________________________KATA 36__________________________________________________________________________________________
 
+Dado que no existe ejercicio 35 en los enunciados pasamos al 36.
+La clase UsuarioBanco modela un usuario con su nombre, saldo y un booleano cuenta_corriente.
+Los metodos disponibles son:
+
+retirar_dinero(cantidad): descuenta dinero del saldo; si el usuario no tiene cuenta corriente y no tiene fondos, lanza error.
+
+agregar_dinero(cantidad): aumenta el saldo.
+
+transferir_dinero(otro_usuario, cantidad): mueve dinero desde otro_usuario hacia el usuario actual.
+Si el usuario que envia tiene cuenta_corriente=True, se permite sobregiro (saldo negativo).
+
+info_usuario(): devuelve un diccionario con el estado actual del usuario.
+
+El caso de uso crea dos usuarios (Alicia y Bob) con cuenta corriente, agrega dinero, realiza una transferencia y una retirada.
+Como ambos tienen cuenta corriente, Bob puede transferir mas dinero del que tiene, dejando su saldo negativo sin error.
+
+Segunda parte:--------------------------------------------------------
+El programa simula un sistema bancario simple con multiples usuarios.
+Cada cuenta se representa mediante la clase UsuarioBanco, con atributos nombre, saldo y cuenta_corriente.
+
+El menu permite:
+
+Crear una cuenta nueva con saldo inicial y tipo (corriente o no).
+
+Consultar una cuenta para ver su informacion.
+
+Ingresar dinero en una cuenta existente.
+
+Retirar dinero, validando fondos (o permitiendo sobregiro si tiene cuenta corriente).
+
+Transferir dinero entre dos usuarios del sistema.
+
+Listar todas las cuentas registradas.
+
+Salir del programa.
+
+El sistema controla todas las combinaciones posibles:
+
+No se puede crear una cuenta duplicada.
+
+No se puede operar con cuentas inexistentes.
+
+No se pueden transferir o retirar cantidades negativas.
+
+No se puede transferir a uno mismo.
+
+Los errores de tipo o valor se capturan y muestran sin detener el programa.
+
+Todo se mantiene activo en un bucle interactivo hasta que el usuario elige la opcion 7 (Salir).
+
+____________________________________________________________________________________________KATA 37__________________________________________________________________________________________
