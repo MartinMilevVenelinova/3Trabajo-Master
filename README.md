@@ -164,3 +164,10 @@ La funcion recibe una lista con elementos mezclados (enteros y strings) y devuel
 Uso filter() con lambda e: isinstance(e, int) para quedarme unicamente con los valores de tipo int.
 Controlo que el parametro sea una lista antes de aplicar el filtro.
 Las pruebas cubren listas mixtas, solo texto, solo numeros, lista vacia y un caso de error con un valor que no es lista.
+
+____________________________________________________________________________________________KATA 21__________________________________________________________________________________________
+
+La funcion recibe un numero y devuelve su cubo utilizando una lambda:
+lambda n: n ** 3.
+Primero verifica que el valor sea numerico (entero o flotante).
+Las pruebas incluyen valores positivos, negativos, cero, decimales y un caso de error con un tipo no numerico.
