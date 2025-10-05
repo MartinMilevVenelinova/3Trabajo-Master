@@ -1751,5 +1751,65 @@ if __name__ == "__main__":
 
     print("KATA 39 - Determinar calificacion en texto - OK")
 
+
+# %% KATA 40 - Calcular el area segun la figura
+# 40. Escribe una función que tome dos parámetros: figura (una cadena que puede ser "rectangulo" , "circulo" o
+# "triangulo" ) y datos (una tupla con los datos necesarios para calcular el área de la figura).
+
+import math
+from typing import Tuple
+
+def calcular_area(figura: str, datos: Tuple[float, ...]) -> float:
+    """
+    Calcula el area de la figura segun el tipo y los datos proporcionados.
+    """
+    if not isinstance(figura, str):
+        raise TypeError("La figura debe ser una cadena de texto")
+    if not isinstance(datos, tuple):
+        raise TypeError("Los datos deben ser una tupla")
+
+    figura = figura.lower()
+
+    if figura == "rectangulo":
+        if len(datos) != 2:
+            raise ValueError("El rectangulo requiere base y altura (2 valores)")
+        base, altura = datos
+        return base * altura
+
+    elif figura == "circulo":
+        if len(datos) != 1:
+            raise ValueError("El circulo requiere el radio (1 valor)")
+        radio, = datos
+        return math.pi * radio**2
+
+    elif figura == "triangulo":
+        if len(datos) != 2:
+            raise ValueError("El triangulo requiere base y altura (2 valores)")
+        base, altura = datos
+        return (base * altura) / 2
+
+    else:
+        raise ValueError("Figura no reconocida. Usa 'rectangulo', 'circulo' o 'triangulo'.")
+
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert round(calcular_area("circulo", (3,)), 2) == 28.27
+    assert calcular_area("rectangulo", (4, 5)) == 20
+    assert calcular_area("triangulo", (6, 4)) == 12
+
+    # Prueba de error: figura no valida
+    print("Probando figura no valida...")
+    try:
+        calcular_area("cuadrado", (5,))
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+
+    # Demostracion visible
+    print(f"Area del rectangulo (4x5): {calcular_area('rectangulo', (4, 5))}")
+    print(f"Area del circulo (radio 3): {calcular_area('circulo', (3,)):.2f}")
+    print(f"Area del triangulo (6x4): {calcular_area('triangulo', (6, 4))}")
+    print("KATA 40 - Calcular el area segun la figura - OK")
+
     
 # %%
