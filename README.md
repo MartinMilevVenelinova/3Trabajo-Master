@@ -236,4 +236,12 @@ Usa sorted() para ordenar las letras y compara las listas resultantes.
 Si son iguales, devuelve True; si no, False.
 Las pruebas incluyen casos con mayusculas, espacios, palabras no anagramas y un caso de error con tipo de dato incorrecto.
 
+____________________________________________________________________________________________KATA 31__________________________________________________________________________________________
+
+
+El programa pide al usuario una lista de nombres separados por comas, la convierte en una lista usando split(",") y strip().
+Luego pide un nombre a buscar y verifica si esta en la lista con if nombre_buscar in lista_nombres:.
+Si no esta, lanza una excepcion ValueError con un mensaje personalizado.
+Siempre imprime “Fin del programa” al final gracias al bloque finally.
+
 
