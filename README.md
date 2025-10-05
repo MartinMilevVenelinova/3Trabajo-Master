@@ -258,5 +258,23 @@ Usa una lambda lambda x, y: x + y junto con map() para realizar la suma elemento
 Valida que las listas tengan la misma longitud y que todos los elementos sean numericos.
 Las pruebas incluyen casos normales, negativos y un error con longitudes distintas.
 
+____________________________________________________________________________________________KATA 34__________________________________________________________________________________________
+
+La clase Arbol representa un arbol con un tronco y una lista de ramas.
+El tronco empieza con longitud 1 y la lista de ramas vacia.
+Tiene metodos para modificar su estructura:
+crecer_tronco(cantidad) aumenta la longitud del tronco en la cantidad indicada (por defecto 1).
+
+nueva_rama(cantidad) agrega una o varias ramas nuevas, cada una con longitud inicial 1.
+
+crecer_ramas(cantidad) incrementa la longitud de todas las ramas existentes.
+
+quitar_rama(posicion) elimina una rama segun su posicion (indice).
+
+info_arbol() devuelve un diccionario con la longitud del tronco, el numero total de ramas y sus longitudes.
+
+El programa incluye un menu interactivo que permite al usuario crear un arbol y ejecutar todas las acciones sobre el mismo.
+El estado del arbol se mantiene entre operaciones: el tronco y las ramas van creciendo segun las acciones realizadas.
+Tambien se manejan todas las combinaciones posibles de errores, como intentar usar el arbol antes de crearlo, introducir valores no numericos, posiciones invalidas o cantidades negativas.
 
 
