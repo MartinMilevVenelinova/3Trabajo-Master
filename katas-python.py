@@ -1343,4 +1343,240 @@ def menu():
 if __name__ == "__main__":
     menu()
 
+# %% KATA 36 - Clase UsuarioBanco
+# 36. Crea la clase UsuarioBanco ,representa a un usuario de un banco con su nombre, saldo y si tiene o no cuenta
+#   corriente. Proporciona métodos para realizar operaciones como retirar dinero, transferir dinero desde otro usuario y
+# agregar dinero al saldo.
+
+class UsuarioBanco:
+    def __init__(self, nombre: str, saldo: float, cuenta_corriente: bool):
+        if not isinstance(nombre, str):
+            raise TypeError("El nombre debe ser una cadena de texto")
+        if not isinstance(saldo, (int, float)) or saldo < 0:
+            raise ValueError("El saldo debe ser un numero positivo")
+        if not isinstance(cuenta_corriente, bool):
+            raise TypeError("El valor de cuenta_corriente debe ser True o False")
+        
+        self.nombre = nombre
+        self.saldo = saldo
+        self.cuenta_corriente = cuenta_corriente
+
+    def retirar_dinero(self, cantidad: float):
+        if not isinstance(cantidad, (int, float)):
+            raise TypeError("La cantidad debe ser un numero")
+        if cantidad <= 0:
+            raise ValueError("La cantidad debe ser positiva")
+        if cantidad > self.saldo and not self.cuenta_corriente:
+            raise ValueError(f"{self.nombre} no tiene suficiente saldo para retirar {cantidad}")
+        
+        self.saldo -= cantidad
+        print(f"{self.nombre} ha retirado {cantidad}. Saldo actual: {self.saldo}")
+
+    def agregar_dinero(self, cantidad: float):
+        if not isinstance(cantidad, (int, float)):
+            raise TypeError("La cantidad debe ser un numero")
+        if cantidad <= 0:
+            raise ValueError("La cantidad debe ser positiva")
+        
+        self.saldo += cantidad
+        print(f"{self.nombre} ha agregado {cantidad}. Saldo actual: {self.saldo}")
+
+    def transferir_dinero(self, otro_usuario: "UsuarioBanco", cantidad: float):
+        if not isinstance(otro_usuario, UsuarioBanco):
+            raise TypeError("El destinatario debe ser un objeto UsuarioBanco")
+        if not isinstance(cantidad, (int, float)):
+            raise TypeError("La cantidad debe ser un numero")
+        if cantidad <= 0:
+            raise ValueError("La cantidad debe ser positiva")
+
+        # Validacion con sobregiro permitido solo si tiene cuenta corriente
+        if cantidad > otro_usuario.saldo and not otro_usuario.cuenta_corriente:
+            raise ValueError(f"{otro_usuario.nombre} no tiene suficiente saldo para transferir {cantidad}")
+
+        otro_usuario.saldo -= cantidad
+        self.saldo += cantidad
+        print(f"{otro_usuario.nombre} ha transferido {cantidad} a {self.nombre}.")
+        print(f"Saldo de {otro_usuario.nombre}: {otro_usuario.saldo} | Saldo de {self.nombre}: {self.saldo}")
+
+    def info_usuario(self):
+        return {
+            "nombre": self.nombre,
+            "saldo": self.saldo,
+            "cuenta_corriente": self.cuenta_corriente
+        }
+
+
+if __name__ == "__main__":
+    # Caso de uso
+    alicia = UsuarioBanco("Alicia", 100, True)
+    bob = UsuarioBanco("Bob", 50, True)
+
+    print("Estado inicial:")
+    print(alicia.info_usuario())
+    print(bob.info_usuario())
+
+    # 2.Agregar 20 unidades de saldo de Bob
+    bob.agregar_dinero(20)
+
+    #3.Hacer una transferencia de 80 unidades desde Bob a Alicia
+    alicia.transferir_dinero(bob, 80)
+
+    # 4.Retirar 50 unidades de saldo a Alicia
+    alicia.retirar_dinero(50)
+
+    print("\nEstado final:")
+    print(alicia.info_usuario())
+    print(bob.info_usuario())
+
+    print("KATA 36 - Clase UsuarioBanco (version final con sobregiro permitido) - OK")
+
+
+# %% 36.2. Caso de prueba con menu incluido
+
+from typing import Dict
+
+class UsuarioBanco:
+    def __init__(self, nombre: str, saldo: float, cuenta_corriente: bool):
+        if not isinstance(nombre, str):
+            raise TypeError("El nombre debe ser una cadena de texto")
+        if not isinstance(saldo, (int, float)) or saldo < 0:
+            raise ValueError("El saldo debe ser un numero positivo")
+        if not isinstance(cuenta_corriente, bool):
+            raise TypeError("El valor de cuenta_corriente debe ser True o False")
+        
+        self.nombre = nombre
+        self.saldo = saldo
+        self.cuenta_corriente = cuenta_corriente
+
+    def retirar_dinero(self, cantidad: float):
+        if not isinstance(cantidad, (int, float)):
+            raise TypeError("La cantidad debe ser un numero")
+        if cantidad <= 0:
+            raise ValueError("La cantidad debe ser positiva")
+        if cantidad > self.saldo and not self.cuenta_corriente:
+            raise ValueError(f"{self.nombre} no tiene suficiente saldo para retirar {cantidad}")
+        
+        self.saldo -= cantidad
+        print(f"{self.nombre} ha retirado {cantidad}. Saldo actual: {self.saldo}")
+
+    def agregar_dinero(self, cantidad: float):
+        if not isinstance(cantidad, (int, float)):
+            raise TypeError("La cantidad debe ser un numero")
+        if cantidad <= 0:
+            raise ValueError("La cantidad debe ser positiva")
+        
+        self.saldo += cantidad
+        print(f"{self.nombre} ha agregado {cantidad}. Saldo actual: {self.saldo}")
+
+    def transferir_dinero(self, otro_usuario: "UsuarioBanco", cantidad: float):
+        if not isinstance(otro_usuario, UsuarioBanco):
+            raise TypeError("El destinatario debe ser un objeto UsuarioBanco")
+        if not isinstance(cantidad, (int, float)):
+            raise TypeError("La cantidad debe ser un numero")
+        if cantidad <= 0:
+            raise ValueError("La cantidad debe ser positiva")
+
+        if cantidad > otro_usuario.saldo and not otro_usuario.cuenta_corriente:
+            raise ValueError(f"{otro_usuario.nombre} no tiene suficiente saldo para transferir {cantidad}")
+
+        otro_usuario.saldo -= cantidad
+        self.saldo += cantidad
+        print(f"{otro_usuario.nombre} ha transferido {cantidad} a {self.nombre}.")
+        print(f"Saldo de {otro_usuario.nombre}: {otro_usuario.saldo} | Saldo de {self.nombre}: {self.saldo}")
+
+    def info_usuario(self) -> Dict[str, object]:
+        return {
+            "nombre": self.nombre,
+            "saldo": self.saldo,
+            "cuenta_corriente": self.cuenta_corriente
+        }
+
+
+def menu():
+    usuarios: Dict[str, UsuarioBanco] = {}
+
+    while True:
+        print("\n--- MENU BANCO ---")
+        print("1. Crear nueva cuenta")
+        print("2. Consultar cuenta")
+        print("3. Ingresar dinero")
+        print("4. Retirar dinero")
+        print("5. Transferir dinero entre cuentas")
+        print("6. Listar todas las cuentas")
+        print("7. Salir")
+
+        opcion = input("Selecciona una opcion (1-7): ").strip()
+
+        try:
+            if opcion == "1":
+                nombre = input("Introduce el nombre del usuario: ").strip()
+                if nombre in usuarios:
+                    print("Ya existe una cuenta con ese nombre.")
+                    continue
+                saldo_inicial = float(input("Introduce el saldo inicial: "))
+                corriente = input("Tiene cuenta corriente? (s/n): ").strip().lower()
+                cuenta_corriente = corriente == "s"
+                usuarios[nombre] = UsuarioBanco(nombre, saldo_inicial, cuenta_corriente)
+                print(f"Cuenta creada para {nombre} con saldo {saldo_inicial}.")
+
+            elif opcion == "2":
+                nombre = input("Introduce el nombre del usuario: ").strip()
+                if nombre not in usuarios:
+                    print("No existe una cuenta con ese nombre.")
+                    continue
+                info = usuarios[nombre].info_usuario()
+                print("Informacion de la cuenta:", info)
+
+            elif opcion == "3":
+                nombre = input("Usuario que recibe el dinero: ").strip()
+                if nombre not in usuarios:
+                    print("No existe una cuenta con ese nombre.")
+                    continue
+                cantidad = float(input("Cantidad a ingresar: "))
+                usuarios[nombre].agregar_dinero(cantidad)
+
+            elif opcion == "4":
+                nombre = input("Usuario que retira el dinero: ").strip()
+                if nombre not in usuarios:
+                    print("No existe una cuenta con ese nombre.")
+                    continue
+                cantidad = float(input("Cantidad a retirar: "))
+                usuarios[nombre].retirar_dinero(cantidad)
+
+            elif opcion == "5":
+                origen = input("Nombre del usuario que envia dinero: ").strip()
+                destino = input("Nombre del usuario que recibe dinero: ").strip()
+
+                if origen not in usuarios or destino not in usuarios:
+                    print("Uno de los usuarios no existe.")
+                    continue
+                if origen == destino:
+                    print("No puedes transferir dinero a la misma cuenta.")
+                    continue
+                cantidad = float(input("Cantidad a transferir: "))
+                usuarios[destino].transferir_dinero(usuarios[origen], cantidad)
+
+            elif opcion == "6":
+                if not usuarios:
+                    print("No hay cuentas registradas.")
+                else:
+                    print("Listado de cuentas:")
+                    for u in usuarios.values():
+                        print(u.info_usuario())
+
+            elif opcion == "7":
+                print("Saliendo del programa. Gracias por usar el sistema bancario.")
+                break
+
+            else:
+                print("Opcion no valida. Intenta de nuevo.")
+
+        except (TypeError, ValueError) as e:
+            print("Error:", e)
+
+
+if __name__ == "__main__":
+    menu()
+
+
 # %%
