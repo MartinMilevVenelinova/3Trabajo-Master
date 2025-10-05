@@ -1067,4 +1067,44 @@ if __name__ == "__main__":
     print("KATA 30 - Comprobar si dos palabras son anagramas - OK")
 
 
+# %% KATA 31 - Buscar un nombre en una lista ingresada por el usuario 
+# 31. Crea una función que solicite al usuario ingresar una lista de nombres y luego solicite un nombre para buscar en
+# esa lista. Si el nombre está en la lista, se imprime un mensaje indicando que fue encontrado, de lo contrario, se
+#lanza una excepción.
+
+def buscar_nombre():
+    """
+    Solicita una lista de nombres y busca un nombre especifico dentro de ella.
+    """
+    try:
+        nombres = input("Ingresa una lista de nombres separados por comas: ")
+        lista_nombres = [n.strip() for n in nombres.split(",") if n.strip()]
+
+        if not lista_nombres:
+            raise ValueError("La lista de nombres no puede estar vacia.")
+
+        nombre_buscar = input("Ingresa el nombre que deseas buscar: ").strip()
+
+        if nombre_buscar in lista_nombres:
+            print(f"El nombre '{nombre_buscar}' fue encontrado en la lista.")
+        else:
+            raise ValueError(f"El nombre '{nombre_buscar}' no se encuentra en la lista.")
+
+    except ValueError as e:
+        print("Error:", e)
+    finally:
+        print("Fin del programa.")
+
+if __name__ == "__main__":
+    buscar_nombre()
+
+"""
+Ingresa una lista de nombres separados por comas: Martin, Nerea, Julian
+Ingresa el nombre que deseas buscar: Martin
+El nombre 'Martin' fue encontrado en la lista.
+En caso de buscar "Pedro" devolvera -El nombre 'Pedro' no se encuentra en la lista.-
+Fin del programa.
+"""
+
+
 # %%
