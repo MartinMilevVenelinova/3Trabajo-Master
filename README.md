@@ -211,3 +211,11 @@ ________________________________________________________________________________
 La funcion recibe una lista de numeros y devuelve su promedio usando sum(numeros) / len(numeros).
 Primero valida que todos los elementos sean numericos y que la lista no este vacia.
 Las pruebas incluyen listas normales, con flotantes y una prueba de error cuando la lista esta vacia.
+
+____________________________________________________________________________________________KATA 28__________________________________________________________________________________________
+
+La funcion recorre la lista y guarda los elementos vistos en un conjunto.
+Cada vez que encuentra un elemento que ya estaba en el conjunto, lo devuelve como el primer duplicado.
+Si no hay duplicados, devuelve None.
+Tambien valida que el parametro sea una lista antes de procesar.
+Las pruebas incluyen listas con duplicados, sin duplicados, vacias y un caso de error con un parametro no valido.
