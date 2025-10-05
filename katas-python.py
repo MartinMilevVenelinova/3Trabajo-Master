@@ -914,4 +914,40 @@ if __name__ == "__main__":
     print(resto_division(20, 6))  # 2
     print("KATA 26 - Calcular el resto de la division con lambda - OK")
 
+# %% KATA 27 - Calcular el promedio de una lista
+# 27. Crea una función que calcule el promedio de una lista de números
+
+from typing import List
+
+def promedio(numeros: List[float]) -> float:
+    """
+    Calcula el promedio (media) de una lista de numeros.
+    """
+    if not all(isinstance(n, (int, float)) for n in numeros):
+        raise TypeError("Todos los elementos deben ser numeros")
+    if not numeros:
+        raise ValueError("La lista no puede estar vacia")
+
+    return sum(numeros) / len(numeros)
+
+if __name__ == "__main__":
+    #Pruebas validas
+    assert promedio([1, 2, 3, 4, 5]) == 3.0
+    assert promedio([10, 20, 30]) == 20.0
+    assert promedio([5]) == 5.0
+    assert promedio([2.5, 3.5, 4.5]) == 3.5
+
+    #Prueba de error: lista vacia
+    print("Probando promedio con lista vacia...")
+    try:
+        promedio([])
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # Demostracion visible
+    print(promedio([6, 8, 10]))  # 8.0
+    print("KATA 27 - Calcular el promedio de una lista - OK")
+
 # %%
