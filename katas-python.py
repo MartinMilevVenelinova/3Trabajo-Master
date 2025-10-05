@@ -950,4 +950,43 @@ if __name__ == "__main__":
     print(promedio([6, 8, 10]))  # 8.0
     print("KATA 27 - Calcular el promedio de una lista - OK")
 
+# %% KATA 28 - Buscar el primer elemento duplicado en una lista
+#28. Crea una función que busque y devuelva el primer elemento duplicado en una lista dada.
+
+from typing import List, Any
+
+def primer_duplicado(elementos: List[Any]) -> Any:
+    """
+    Devuelve el primer elemento duplicado encontrado en la lista.
+    Si no hay duplicados, devuelve None.
+    """
+    if not isinstance(elementos, list):
+        raise TypeError("El parametro debe ser una lista")
+
+    vistos = set()
+    for e in elementos:
+        if e in vistos:
+            return e
+        vistos.add(e)
+    return None
+
+if __name__ == "__main__":
+    # Pruebas validas
+    assert primer_duplicado([1, 2, 3, 2, 5]) == 2
+    assert primer_duplicado(["a", "b", "c", "a", "d"]) == "a"
+    assert primer_duplicado([10, 20, 30, 40]) is None
+    assert primer_duplicado([]) is None
+
+    # Prueba de error: parametro no lista
+    print("Probando primer_duplicado con parametro no lista...")
+    try:
+        primer_duplicado("no es lista")
+    except TypeError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    #demostracion visible
+    print(primer_duplicado([9, 7, 3, 5, "leon", "león", 5]))  
+    print("KATA 28 - Buscar el primer elemento duplicado en una lista - OK")
 # %%
