@@ -1811,5 +1811,59 @@ if __name__ == "__main__":
     print(f"Area del triangulo (6x4): {calcular_area('triangulo', (6, 4))}")
     print("KATA 40 - Calcular el area segun la figura - OK")
 
-    
+
+# %%
+# 41. En este ejercicio, se te pedirá que escribas un programa en Python que utilice condicionales para determinar el
+# monto final de una compra en una tienda en línea, después de aplicar un descuento. El programa debe hacer lo
+# siguiente:
+# 1. Solicita al usuario que ingrese el precio original de un artículo.
+# 2. Pregunta al usuario si tiene un cupón de descuento (respuesta sí o no).
+# 3. Si el usuario responde que sí, solicita que ingrese el valor del cupón de descuento.
+# 4. Aplica el descuento al precio original del artículo, siempre y cuando el valor del cupón sea válido (es decir, mayor
+# a cero). Por ejemplo, descuento de 15€.
+# 5. Muestra el precio final de la compra, teniendo en cuenta el descuento aplicado o sin él.
+# 6. Recuerda utilizar estructuras de control de flujo como if, elif y else para llevar a cabo estas acciones en tu
+# programa de Python.
+
+def calcular_precio_final():
+    """
+    Solicita datos al usuario y calcula el precio final tras aplicar descuento.
+    """
+    try:
+        precio = float(input("Introduce el precio original del articulo (€): ").strip())
+        if precio <= 0:
+            raise ValueError("El precio debe ser mayor a 0")
+
+        tiene_cupon = input("Tienes un cupon de descuento? (si/no): ").strip().lower()
+
+        if tiene_cupon == "si":
+            valor_cupon = float(input("Introduce el valor del cupon (€): ").strip())
+            if valor_cupon <= 0:
+                print("El valor del cupon no es valido. No se aplicara descuento.")
+                total = precio
+            elif valor_cupon >= precio:
+                print("El cupon no puede ser mayor o igual al precio del articulo.")
+                total = precio
+            else:
+                total = precio - valor_cupon
+                print(f"Descuento aplicado de {valor_cupon}€. Nuevo precio: {total:.2f}€")
+        elif tiene_cupon == "no":
+            total = precio
+            print(f"No se aplico ningun descuento. Total a pagar: {total:.2f}€")
+        else:
+            print("Respuesta no valida. Se asume que no hay cupon.")
+            total = precio
+            print(f"Total a pagar: {total:.2f}€")
+
+        print("\nResumen de compra:")
+        print(f"Precio original: {precio:.2f}€")
+        print(f"Precio final: {total:.2f}€")
+
+    except ValueError as e:
+        print("Error:", e)
+
+
+if __name__ == "__main__":
+    calcular_precio_final()
+    print("KATA 41 - Calcular el precio final aplicando descuento - OK")
 # %%
