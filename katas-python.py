@@ -252,7 +252,7 @@ if __name__ == "__main__":
 
 from typing import List
 
-PROHIBIDAS = ["Mapache", "Tigre", "Serpiente Piton", "Cocodrilo", "Oso"]
+PROHIBIDAS = ["Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso"]
 
 def filtrar_mascotas(mascotas: List[str]) -> List[str]:
     """
@@ -261,15 +261,17 @@ def filtrar_mascotas(mascotas: List[str]) -> List[str]:
     if not all(isinstance(nombre, str) for nombre in mascotas):
         raise TypeError("Todos los elementos deben ser strings")
 
-    return list(filter(lambda m: m not in PROHIBIDAS, mascotas))
+    # Comparación en minúsculas para evitar problemas de mayúsculas/minúsculas
+    return list(filter(lambda m: m.lower() not in [p.lower() for p in PROHIBIDAS], mascotas))
 
 if __name__ == "__main__":
-    #pruebas validas
+    # pruebas validas
     assert filtrar_mascotas(["Perro", "Gato", "Mapache"]) == ["Perro", "Gato"]
     assert filtrar_mascotas(["Oso", "Conejo", "Tigre"]) == ["Conejo"]
     assert filtrar_mascotas([]) == []
+    assert filtrar_mascotas(["Serpiente Pitón", "Tortuga"]) == ["Tortuga"]
 
-    #prueba de error: lista con un elemento no string
+    # prueba de error: lista con un elemento no string
     print("Probando filtrar_mascotas con valor no string...")
     try:
         filtrar_mascotas(["Perro", 123, "Gato"])
@@ -278,10 +280,9 @@ if __name__ == "__main__":
     else:
         print("No se capturo el error como se esperaba")
 
-    #demostracion visible
-    print(filtrar_mascotas(["Gato", "Serpiente Piton", "Tortuga"]))  # ['Gato', 'Tortuga']
+    # demostracion visible
+    print(filtrar_mascotas(["Gato", "Serpiente Pitón", "Tortuga"]))  # ['Gato', 'Tortuga']
     print("KATA 09 - Filtrar mascotas prohibidas - OK")
-
 
 # %% KATA 10 - Promedio con excepcion personalizada
 # 10. Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, lanza una
@@ -997,34 +998,32 @@ if __name__ == "__main__":
 
 def enmascarar(valor) -> str:
     """
-    Convierte el valor en texto y reeemplaza todos los caracteres con '#',
-    excepto los ultimos cuatro.
+    Devuelve el valor enmascarado con '#', dejando visibles solo los últimos 4 caracteres.
+    Si la longitud es <= 4, se devuelve el valor convertido a texto sin cambios.
     """
+    if valor is None:
+        raise ValueError("No se puede enmascarar un valor None")
     texto = str(valor)
-
-    if len(texto) <= 4:
-        return texto
-
-    return "#" * (len(texto) - 4) + texto[-4:]
+    return texto if len(texto) <= 4 else "#" * (len(texto) - 4) + texto[-4:]
 
 if __name__ == "__main__":
-    #pruebas validas
+    # pruebas validas
     assert enmascarar("123456789") == "#####6789"
+    assert enmascarar("1234") == "1234"
     assert enmascarar(987654321) == "#####4321"
-    assert enmascarar("abcd") == "abcd"
-    assert enmascarar("hi") == "hi"
+    assert enmascarar("") == ""
 
-    #prueba de error: valor None
+    # prueba de error: valor None
     print("Probando enmascarar con valor None...")
     try:
         enmascarar(None)
-    except Exception as e:
+    except ValueError as e:
         print("Error capturado correctamente:", e)
     else:
         print("No se capturo el error como se esperaba")
 
-    # Demostracion visible
-    print(enmascarar("claveSecreta_1234"))  # ###########1234
+    # demostracion visible
+    print(enmascarar("tarjeta-5555666677778888"))  # ################8888
     print("KATA 29 - Enmascarar una cadena de texto - OK")
 
 
@@ -1348,40 +1347,21 @@ if __name__ == "__main__":
 #   corriente. Proporciona métodos para realizar operaciones como retirar dinero, transferir dinero desde otro usuario y
 # agregar dinero al saldo.
 
+
 class UsuarioBanco:
-    def __init__(self, nombre: str, saldo: float, cuenta_corriente: bool):
-        if not isinstance(nombre, str):
-            raise TypeError("El nombre debe ser una cadena de texto")
-        if not isinstance(saldo, (int, float)) or saldo < 0:
-            raise ValueError("El saldo debe ser un numero positivo")
-        if not isinstance(cuenta_corriente, bool):
-            raise TypeError("El valor de cuenta_corriente debe ser True o False")
-        
+    """
+    Representa un usuario bancario con saldo y posibilidad de cuenta corriente.
+    """
+
+    def __init__(self, nombre: str, saldo: float, cuenta_corriente: bool = False):
         self.nombre = nombre
-        self.saldo = saldo
-        self.cuenta_corriente = cuenta_corriente
-
-    def retirar_dinero(self, cantidad: float):
-        if not isinstance(cantidad, (int, float)):
-            raise TypeError("La cantidad debe ser un numero")
-        if cantidad <= 0:
-            raise ValueError("La cantidad debe ser positiva")
-        if cantidad > self.saldo and not self.cuenta_corriente:
-            raise ValueError(f"{self.nombre} no tiene suficiente saldo para retirar {cantidad}")
-        
-        self.saldo -= cantidad
-        print(f"{self.nombre} ha retirado {cantidad}. Saldo actual: {self.saldo}")
-
-    def agregar_dinero(self, cantidad: float):
-        if not isinstance(cantidad, (int, float)):
-            raise TypeError("La cantidad debe ser un numero")
-        if cantidad <= 0:
-            raise ValueError("La cantidad debe ser positiva")
-        
-        self.saldo += cantidad
-        print(f"{self.nombre} ha agregado {cantidad}. Saldo actual: {self.saldo}")
+        self.saldo = float(saldo)
+        self.cuenta_corriente = bool(cuenta_corriente)
 
     def transferir_dinero(self, otro_usuario: "UsuarioBanco", cantidad: float):
+        """
+        Transfiere dinero desde self hacia otro_usuario, validando tipos, signo y saldo del remitente.
+        """
         if not isinstance(otro_usuario, UsuarioBanco):
             raise TypeError("El destinatario debe ser un objeto UsuarioBanco")
         if not isinstance(cantidad, (int, float)):
@@ -1389,46 +1369,57 @@ class UsuarioBanco:
         if cantidad <= 0:
             raise ValueError("La cantidad debe ser positiva")
 
-        # Validacion con sobregiro permitido solo si tiene cuenta corriente
-        if cantidad > otro_usuario.saldo and not otro_usuario.cuenta_corriente:
-            raise ValueError(f"{otro_usuario.nombre} no tiene suficiente saldo para transferir {cantidad}")
+        if cantidad > self.saldo and not self.cuenta_corriente:
+            raise ValueError(f"{self.nombre} no tiene suficiente saldo para transferir {cantidad}")
 
-        otro_usuario.saldo -= cantidad
-        self.saldo += cantidad
-        print(f"{otro_usuario.nombre} ha transferido {cantidad} a {self.nombre}.")
-        print(f"Saldo de {otro_usuario.nombre}: {otro_usuario.saldo} | Saldo de {self.nombre}: {self.saldo}")
-
-    def info_usuario(self):
-        return {
-            "nombre": self.nombre,
-            "saldo": self.saldo,
-            "cuenta_corriente": self.cuenta_corriente
-        }
-
+        self.saldo -= cantidad
+        otro_usuario.saldo += cantidad
+        print(f"{self.nombre} ha transferido {cantidad} a {otro_usuario.nombre}.")
+        print(f"Saldo de {self.nombre}: {self.saldo} | Saldo de {otro_usuario.nombre}: {otro_usuario.saldo}")
 
 if __name__ == "__main__":
-    # Caso de uso
-    alicia = UsuarioBanco("Alicia", 100, True)
-    bob = UsuarioBanco("Bob", 50, True)
+    # pruebas validas
+    m = UsuarioBanco("Martin", 500)
+    d = UsuarioBanco("Diego", 200)
+    m.transferir_dinero(d, 150)
+    assert m.saldo == 350.0 and d.saldo == 350.0
 
-    print("Estado inicial:")
-    print(alicia.info_usuario())
-    print(bob.info_usuario())
+    # cuenta corriente permite sobregiro
+    c = UsuarioBanco("Ari", 100, cuenta_corriente=True)
+    e = UsuarioBanco("Sam", 50)
+    c.transferir_dinero(e, 120)  # valido por cuenta corriente
+    assert c.saldo == -20.0 and e.saldo == 170.0
 
-    # 2.Agregar 20 unidades de saldo de Bob
-    bob.agregar_dinero(20)
+    # prueba de error: destinatario incorrecto
+    print("Probando transferir_dinero con destinatario no UsuarioBanco...")
+    try:
+        m.transferir_dinero("no_usuario", 10)  # type: ignore
+    except TypeError as ex:
+        print("Error capturado correctamente:", ex)
+    else:
+        print("No se capturo el error como se esperaba")
 
-    #3.Hacer una transferencia de 80 unidades desde Bob a Alicia
-    alicia.transferir_dinero(bob, 80)
+    # prueba de error: cantidad no positiva
+    print("Probando transferir_dinero con cantidad no positiva...")
+    try:
+        m.transferir_dinero(d, 0)
+    except ValueError as ex:
+        print("Error capturado correctamente:", ex)
+    else:
+        print("No se capturo el error como se esperaba")
 
-    # 4.Retirar 50 unidades de saldo a Alicia
-    alicia.retirar_dinero(50)
+    # prueba de error: saldo insuficiente sin cuenta corriente
+    print("Probando saldo insuficiente sin cuenta corriente...")
+    try:
+        d.transferir_dinero(m, 1000)
+    except ValueError as ex:
+        print("Error capturado correctamente:", ex)
+    else:
+        print("No se capturo el error como se esperaba")
 
-    print("\nEstado final:")
-    print(alicia.info_usuario())
-    print(bob.info_usuario())
-
-    print("KATA 36 - Clase UsuarioBanco (version final con sobregiro permitido) - OK")
+    # demostracion visible
+    print(f"{m.nombre}: {m.saldo} | {d.nombre}: {d.saldo} | {c.nombre}: {c.saldo} | {e.nombre}: {e.saldo}")
+    print("KATA 36 - Clase UsuarioBanco - OK")
 
 
 # %% 36.2. Caso de prueba con menu incluido
@@ -1678,36 +1669,47 @@ if __name__ == "__main__":
 
 def momento_del_dia(hora: int) -> str:
     """
-    Devuelve 'noche', 'dia' o 'tarde' segun la hora proporcionada(0-23).
+    Devuelve 'Madrugada' (0-5), 'Mañana' (6-11), 'Tarde' (12-19), 'Noche' (20-23).
     """
-    if not isinstance(hora, int):
-        raise TypeError("La hora debe ser un numero entero")
-    if hora < 0 or hora > 23:
-        raise ValueError("La hora debe estar entre 0 y 23")
+    if not isinstance(hora, int) or not (0 <= hora <= 23):
+        raise ValueError("La hora debe ser un numero entero entre 0 y 23")
 
+    if 0 <= hora < 6:
+        return "Madrugada"
     if 6 <= hora < 12:
-        return "dia"
-    elif 12 <= hora < 20:
-        return "tarde"
-    else:
-        return "noche"
-
+        return "Mañana"
+    if 12 <= hora < 20:
+        return "Tarde"
+    return "Noche"
 
 if __name__ == "__main__":
+    # pruebas validas (bordes incluidos)
+    assert momento_del_dia(0) == "Madrugada"
+    assert momento_del_dia(5) == "Madrugada"
+    assert momento_del_dia(6) == "Mañana"
+    assert momento_del_dia(11) == "Mañana"
+    assert momento_del_dia(12) == "Tarde"
+    assert momento_del_dia(19) == "Tarde"
+    assert momento_del_dia(20) == "Noche"
+    assert momento_del_dia(23) == "Noche"
+
+    # prueba de error: valor invalido
+    print("Probando momento_del_dia con hora invalida...")
     try:
-        hora_usuario = input("Introduce la hora actual (0-23): ").strip()
-        if not hora_usuario.isdigit():
-            raise ValueError("Debes ingresar un numero entero entre 0 y 23")
+        momento_del_dia(24)
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
 
-        hora = int(hora_usuario)
-        resultado = momento_del_dia(hora)
-        print(f"Son las {hora}:00, por lo tanto es {resultado}.")
+    # demostracion visible: entrada robusta (acepta '07')
+    try:
+        hora = int(input("Introduce la hora actual (0-23): "))
+        print(f"Son las {hora}:00, por lo tanto es {momento_del_dia(hora)}.")
+    except ValueError:
+        print("Error: debes ingresar un numero entero entre 0 y 23.")
 
-    except (TypeError, ValueError) as e:
-        print("Error:", e)
-
-    print("KATA 38 - Determinar si es de dia, tarde o noche - OK")
-
+    print("KATA 38 - Determinar momento del dia - OK")
 
 # %% KATA 39 - Determinar calificacion en texto segun nota numerica
 # 39. Escribe un programa que determine qué calificación en texto tiene un alumno en base a su calificación numérica.
@@ -1825,45 +1827,42 @@ if __name__ == "__main__":
 # 6. Recuerda utilizar estructuras de control de flujo como if, elif y else para llevar a cabo estas acciones en tu
 # programa de Python.
 
-def calcular_precio_final():
+def calcular_precio(precio: float, valor_cupon: float) -> float:
     """
-    Solicita datos al usuario y calcula el precio final tras aplicar descuento.
+    Calcula el precio final tras aplicar el cupon.
+    Si valor_cupon >= precio, el total es 0.
     """
-    try:
-        precio = float(input("Introduce el precio original del articulo (€): ").strip())
-        if precio <= 0:
-            raise ValueError("El precio debe ser mayor a 0")
+    if not isinstance(precio, (int, float)) or not isinstance(valor_cupon, (int, float)):
+        raise TypeError("Ambos valores deben ser numericos")
+    if precio < 0 or valor_cupon < 0:
+        raise ValueError("Los valores no pueden ser negativos")
 
-        tiene_cupon = input("Tienes un cupon de descuento? (si/no): ").strip().lower()
+    if valor_cupon >= precio:
+        print("El cupon cubre el precio completo. Total a pagar: 0.00€")
+        total = 0
+    else:
+        total = float(precio) - float(valor_cupon)
+        print(f"Precio original: {precio}€ - Cupon: {valor_cupon}€ = Total: {total}€")
 
-        if tiene_cupon == "si":
-            valor_cupon = float(input("Introduce el valor del cupon (€): ").strip())
-            if valor_cupon <= 0:
-                print("El valor del cupon no es valido. No se aplicara descuento.")
-                total = precio
-            elif valor_cupon >= precio:
-                print("El cupon no puede ser mayor o igual al precio del articulo.")
-                total = precio
-            else:
-                total = precio - valor_cupon
-                print(f"Descuento aplicado de {valor_cupon}€. Nuevo precio: {total:.2f}€")
-        elif tiene_cupon == "no":
-            total = precio
-            print(f"No se aplico ningun descuento. Total a pagar: {total:.2f}€")
-        else:
-            print("Respuesta no valida. Se asume que no hay cupon.")
-            total = precio
-            print(f"Total a pagar: {total:.2f}€")
-
-        print("\nResumen de compra:")
-        print(f"Precio original: {precio:.2f}€")
-        print(f"Precio final: {total:.2f}€")
-
-    except ValueError as e:
-        print("Error:", e)
-
+    return total
 
 if __name__ == "__main__":
-    calcular_precio_final()
-    print("KATA 41 - Calcular el precio final aplicando descuento - OK")
+    # pruebas validas
+    assert calcular_precio(50, 10) == 40.0
+    assert calcular_precio(40, 50) == 0
+    assert calcular_precio(0, 0) == 0
+
+    # prueba de error: negativos
+    print("Probando calcular_precio con valores negativos...")
+    try:
+        calcular_precio(-1, 5)
+    except ValueError as e:
+        print("Error capturado correctamente:", e)
+    else:
+        print("No se capturo el error como se esperaba")
+
+    # demostracion visible
+    calcular_precio(89.99, 20)
+    calcular_precio(25, 25)
+    print("KATA 41 - Calcular precio con descuento - OK")
 # %%
